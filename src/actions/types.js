@@ -1,0 +1,10 @@
+export const SIGN_IN = "SIGN_IN";
+export const SIGN_OUT = "SIGN_OUT";
+export const FETCH_SCHOLARS = "FETCH_SCHOLARS";
+export const FETCH_SCHOLAR = "FETCH_SCHOLAR";
+export const CREATE_SCHOLAR = "CREATE_SCHOLAR";
+export const EDIT_SCHOLAR = "EDIT_SCHOLAR";
+export const DELETE_SCHOLAR = "DELETE_SCHOLAR";
+export const DELETE_SCHOLAR_DATA = "DELETE_SCHOLAR_DATA";
+export const FETCH_SLP_PRICE = "FETCH_SLP_PRICE";
+export const FETCH_AXS_PRICE = "FETCH_AXS_PRICE";
