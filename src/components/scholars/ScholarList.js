@@ -11,7 +11,7 @@ import ScholarCard from "./ScholarCard";
 import ScholarForm from "./ScholarForm";
 import ScholarEmpty from "./ScholarEmpty";
 
-import history from "../history";
+import history from "../../history";
 
 class ScholarList extends Component {
   componentDidMount() {
