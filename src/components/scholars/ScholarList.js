@@ -11,14 +11,18 @@ import ScholarCard from "./ScholarCard";
 import ScholarForm from "./ScholarForm";
 import ScholarEmpty from "./ScholarEmpty";
 
+import history from "../history";
+
 class ScholarList extends Component {
   componentDidMount() {
-    this.props.fetchAxsPrice();
-    this.props.fetchSlpPrice();
-
     if (this.props.isSignedIn) {
       this.props.fetchScholars();
+    } else {
+      history.push("/");
     }
+
+    this.props.fetchAxsPrice();
+    this.props.fetchSlpPrice();
 
     setInterval(this.props.fetchAxsPrice, 120000);
     setInterval(this.props.fetchSlpPrice, 120000);
