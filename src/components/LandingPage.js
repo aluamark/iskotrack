@@ -15,6 +15,7 @@ class LandingPage extends Component {
             autoPlay
             playsInline
             muted
+            loop
             src="https://cdn.axieinfinity.com/website/final.mp4"
           />
           <div className="container h-100">
