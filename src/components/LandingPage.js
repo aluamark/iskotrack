@@ -9,7 +9,7 @@ class LandingPage extends Component {
   renderLandingPage() {
     const screenWidth = window.innerWidth;
 
-    if (screenWidth <= 720) {
+    if (screenWidth < 720) {
       return (
         <div className="container">
           <div className="overlay"></div>
@@ -33,7 +33,6 @@ class LandingPage extends Component {
           loop
           src="https://cdn.axieinfinity.com/website/final.mp4"
         />
-
         <div className="container h-100">
           <div className="d-flex h-100 align-items-center">
             <div className="w-100 text-white">
@@ -43,7 +42,7 @@ class LandingPage extends Component {
                 alt="slp"
                 height="75px"
                 width="75px"
-              ></img>
+              />
               <h1 className="h3 font-weight-normal">Axie Scholar Tracker</h1>
             </div>
           </div>
