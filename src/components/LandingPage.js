@@ -12,16 +12,11 @@ class LandingPage extends Component {
         <div className="head">
           <div className="overlay"></div>
           <video
-            playsInline="playsinline"
-            autoPlay="autoplay"
-            muted="muted"
-            loop="loop"
-          >
-            <source
-              src="https://cdn.axieinfinity.com/website/final.webm"
-              type="video/mp4"
-            ></source>
-          </video>
+            autoPlay
+            playsInline
+            muted
+            src="https://cdn.axieinfinity.com/website/final.mp4"
+          />
           <div className="container h-100">
             <div className="d-flex h-100 align-items-center">
               <div className="w-100 text-white">
