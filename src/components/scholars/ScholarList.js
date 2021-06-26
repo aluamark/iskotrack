@@ -24,8 +24,8 @@ class ScholarList extends Component {
     this.props.fetchAxsPrice();
     this.props.fetchSlpPrice();
 
-    setInterval(this.props.fetchAxsPrice, 120000);
-    setInterval(this.props.fetchSlpPrice, 120000);
+    setInterval(this.props.fetchAxsPrice, 180000);
+    setInterval(this.props.fetchSlpPrice, 180000);
   }
 
   renderList = () => {
