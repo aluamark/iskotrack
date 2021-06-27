@@ -12,14 +12,10 @@ class LandingPage extends Component {
 
     if (screenWidth < 720) {
       return (
-        <div className="container">
+        <div className="head">
           <div className="overlay"></div>
           <h1 className="h3 font-weight-normal">Axie Scholar Tracker</h1>
-          <img
-            src="https://cdn.axieinfinity.com/landing-page/_next/static/images/banner-941f68fe82413ac57390b1d4b6ca51ef.png"
-            class="img-fluid"
-            alt="digital-nation"
-          />
+          <img src="/axiehome.gif" alt="digital-nation" />
         </div>
       );
     }
