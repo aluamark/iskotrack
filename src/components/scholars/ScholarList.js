@@ -5,6 +5,8 @@ import {
   fetchScholar,
   fetchSlpPrice,
   fetchAxsPrice,
+  showReloadLoading,
+  hideLoader,
 } from "../../actions";
 
 import ScholarCard from "./ScholarCard";
@@ -23,6 +25,7 @@ class ScholarList extends Component {
 
     this.props.fetchAxsPrice();
     this.props.fetchSlpPrice();
+    this.props.hideLoader();
 
     setInterval(this.props.fetchAxsPrice, 180000);
     setInterval(this.props.fetchSlpPrice, 180000);
@@ -106,10 +109,46 @@ class ScholarList extends Component {
   }
 
   refresh = () => {
+    this.props.showReloadLoading();
+    setTimeout(() => {
+      this.props.hideLoader();
+    }, 5000);
     return this.props.scholars.forEach((scholar) => {
       this.props.fetchScholar(scholar.ethAddress);
     });
   };
+
+  renderReloadButton() {
+    if (this.props.reloadLoading) {
+      return (
+        <button
+          className="btn btn-success btn-sm float-end"
+          onClick={() => {
+            this.refresh();
+          }}
+        >
+          <span
+            className="spinner-border spinner-border-sm px-1"
+            role="status"
+            aria-hidden="true"
+          ></span>{" "}
+          Reload Data
+        </button>
+      );
+    }
+
+    return (
+      <button
+        className="btn btn-success btn-sm float-end"
+        onClick={() => {
+          this.refresh();
+        }}
+      >
+        <i className="fas fa-redo pe-2"></i>
+        Reload Data
+      </button>
+    );
+  }
 
   render() {
     if (this.props.isSignedIn) {
@@ -122,17 +161,7 @@ class ScholarList extends Component {
               <div className="col-6">
                 <h3 className="col-12 text-warning">Scholars</h3>
               </div>
-              <div className="col-6">
-                <button
-                  className="btn btn-success btn-sm float-end"
-                  onClick={() => {
-                    this.refresh();
-                  }}
-                >
-                  <i className="fas fa-redo pe-2"></i>
-                  Reload Data
-                </button>
-              </div>
+              <div className="col-6">{this.renderReloadButton()}</div>
             </div>
           </div>
 
@@ -156,6 +185,8 @@ const mapStateToProps = (state) => {
     scholarsData: Object.values(state.scholarsData),
     slpPrice: state.slpData.slpPrice,
     axsPrice: state.slpData.axsPrice,
+    loading: state.auth.loading,
+    reloadLoading: state.auth.reloadLoading,
   };
 };
 
@@ -164,4 +195,6 @@ export default connect(mapStateToProps, {
   fetchScholar,
   fetchSlpPrice,
   fetchAxsPrice,
+  showReloadLoading,
+  hideLoader,
 })(ScholarList);

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import { bypass } from "../actions";
 
 import LandingPage from "./LandingPage";
 import ScholarList from "./scholars/ScholarList";
@@ -12,6 +14,12 @@ import history from "../history";
 
 class App extends Component {
   render() {
+    const userId = sessionStorage.getItem("UserId");
+    const token = sessionStorage.getItem("Token");
+    const session = { userId, token };
+    if (userId && token) {
+      this.props.bypass(session);
+    }
     return (
       <Router history={history}>
         <Navbar />
@@ -25,4 +33,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { bypass })(App);

@@ -1,21 +1,40 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { signOut } from "../actions";
+import { signOut, showLoader } from "../actions";
 
 import LoginForm from "./LoginForm";
 
 class Navbar extends Component {
   renderNavbar() {
     if (this.props.isSignedIn) {
+      if (this.props.loading) {
+        return (
+          <nav className="nav nav-masthead justify-content-center float-md-end pt-3 ">
+            <div className="nav-item px-3">
+              <button className="btn btn-danger btn-sm" type="button" disabled>
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>{" "}
+                Sign Out
+              </button>
+            </div>
+          </nav>
+        );
+      }
       return (
         <nav className="nav nav-masthead justify-content-center float-md-end pt-3 ">
-          <div className="nav-item pe-3">
+          <div className="nav-item px-3">
             <button
               className="btn btn-danger btn-sm"
-              onClick={() => this.props.signOut()}
+              onClick={() => {
+                this.props.signOut();
+                this.props.showLoader();
+              }}
             >
-              Sign Out
+              <i className="fas fa-sign-out-alt"></i> Sign Out
             </button>
           </div>
         </nav>
@@ -51,7 +70,11 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { isSignedIn: state.auth.isSignedIn, userId: state.auth.userId };
+  return {
+    isSignedIn: state.auth.isSignedIn,
+    userId: state.auth.userId,
+    loading: state.auth.loading,
+  };
 };
 
-export default connect(mapStateToProps, { signOut })(Navbar);
+export default connect(mapStateToProps, { signOut, showLoader })(Navbar);

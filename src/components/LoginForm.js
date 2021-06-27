@@ -1,16 +1,10 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { signIn } from "../actions";
+import { signIn, showLoader } from "../actions";
 
 class LoginForm extends Component {
-  renderError({ error, touched }) {
-    if (touched && error) {
-      return <small className="text-danger">{error}</small>;
-    }
-  }
-
-  renderInput = ({ input, label, type, meta }) => {
+  renderInput = ({ input, label, type }) => {
     return (
       <div>
         <small className="text-white">{label}</small>
@@ -21,15 +15,39 @@ class LoginForm extends Component {
           type={type}
           {...input}
         />
-        {this.renderError(meta)}
       </div>
     );
   };
 
   onSubmit = (formValues) => {
     this.props.signIn(formValues);
-    localStorage.setItem("user", formValues);
+    this.props.showLoader();
   };
+
+  renderLoginButton() {
+    if (this.props.loading) {
+      return (
+        <button
+          className="btn btn-warning btn-sm col-12 mt-4"
+          type="button"
+          disabled
+        >
+          <span
+            className="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></span>{" "}
+          Login
+        </button>
+      );
+    }
+
+    return (
+      <button type="submit" className="btn btn-warning btn-sm col-12 mt-4">
+        <i className="fas fa-sign-in-alt"></i> Login
+      </button>
+    );
+  }
 
   render() {
     return (
@@ -50,14 +68,7 @@ class LoginForm extends Component {
                 type="password"
               />
             </div>
-            <div className="col-sm mt-2">
-              <button
-                type="submit"
-                className="btn btn-warning btn-sm col-12 mt-4"
-              >
-                Login
-              </button>
-            </div>
+            <div className="col-sm mt-2">{this.renderLoginButton()}</div>
           </div>
         </form>
       </div>
@@ -65,63 +76,12 @@ class LoginForm extends Component {
   }
 }
 
-// const validate = (formValues) => {
-//   const errors = {};
-
-//   if (!formValues.ethAddress) {
-//     errors.ethAddress = "Address required.";
-//   }
-
-//   const valid = WAValidator.validate(formValues.ethAddress, "ETH");
-
-//   if (!valid) {
-//     errors.ethAddress = "Invalid ETH address.";
-//   }
-
-//   if (!formValues.nickname) {
-//     errors.nickname = "Nickname required.";
-//   }
-
-//   if (!formValues.sharePercentage) {
-//     errors.sharePercentage = "Share required.";
-//   }
-
-//   if (formValues.sharePercentage < 0 || formValues.sharePercentage > 100) {
-//     errors.sharePercentage = "Invalid share percentage.";
-//   }
-
-//   return errors;
-// };
-
 const mapStateToProps = (state) => {
-  return { isSignedIn: state.auth.isSignedIn };
+  return { isSignedIn: state.auth.isSignedIn, loading: state.auth.loading };
 };
 
 const formWrapped = reduxForm({
   form: "loginForm",
-  // validate,
 })(LoginForm);
 
-export default connect(mapStateToProps, { signIn })(formWrapped);
-
-// Date Input
-// import date from "date-and-time";
-
-// renderDateInput({ input, label }) {
-//   const now = new Date();
-//   const dateAndTime = date.format(now, "YYYY-MM-DDTHH:mm:ss");
-
-//   return (
-//     <div className="col col-lg-12 mb-3">
-//       <div className="form-group">
-//         <label className="form-label fw-bold">{label}</label>
-//         <input
-//           className="form-control"
-//           type="datetime-local"
-//           {...input}
-//           value={dateAndTime}
-//         ></input>
-//       </div>
-//     </div>
-//   );
-// }
+export default connect(mapStateToProps, { signIn, showLoader })(formWrapped);

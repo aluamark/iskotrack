@@ -16,16 +16,55 @@ import coingecko from "../apis/coingecko";
 
 import history from "../history";
 
+export const showLoader = () => (dispatch) => {
+  dispatch({
+    type: "SHOW_LOADER",
+  });
+};
+
+export const showReloadLoading = () => (dispatch) => {
+  dispatch({
+    type: "SHOW_RELOAD_LOADING",
+  });
+};
+
+export const hideLoader = () => (dispatch) => {
+  dispatch({
+    type: "HIDE_LOADER",
+  });
+};
+
 export const signIn = (formValues) => async (dispatch) => {
-  const response = await scholar.post(`/user/login`, { ...formValues });
+  try {
+    const response = await scholar.post(`/user/login`, { ...formValues });
 
-  const data = response.data;
-  const userId = data.user._id;
+    const data = response.data;
+    const userId = data.user._id;
 
-  sessionStorage.setItem("Token", data.token);
+    sessionStorage.setItem("Token", data.token);
+    sessionStorage.setItem("UserId", userId);
 
-  dispatch({ type: SIGN_IN, payload: userId });
-  history.push(`/scholars`);
+    dispatch({ type: SIGN_IN, payload: { isSignedIn: true, userId } });
+    history.push(`/scholars`);
+  } catch (error) {
+    dispatch({ type: "HIDE_LOADER" });
+  }
+};
+
+export const bypass = (session) => async (dispatch) => {
+  try {
+    const response = await scholar.get(
+      `/user/bypassLogin/${session.userId}/${session.token}`
+    );
+
+    const userId = response.data[0]._id;
+
+    dispatch({ type: SIGN_IN, payload: { isSignedIn: true, userId } });
+    history.push(`/scholars`);
+  } catch (error) {
+    dispatch({ type: "HIDE_LOADER" });
+    history.push(`/`);
+  }
 };
 
 export const signOut = () => async (dispatch) => {
@@ -41,7 +80,7 @@ export const signOut = () => async (dispatch) => {
       },
     }
   );
-
+  sessionStorage.clear();
   dispatch({ type: SIGN_OUT });
   history.push(`/`);
 };

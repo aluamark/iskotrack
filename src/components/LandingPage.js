@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { bypass } from "../actions";
 
 import Footer from "./Footer";
 
@@ -68,4 +69,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(LandingPage);
+export default connect(mapStateToProps, { bypass })(LandingPage);
