@@ -33,13 +33,6 @@ class LandingPage extends Component {
         <div className="container h-100">
           <div className="d-flex h-100 align-items-center">
             <div className="w-100 text-white">
-              <img
-                className="mb-4"
-                src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
-                alt="slp"
-                height="75px"
-                width="75px"
-              />
               <h1 className="h3 font-weight-normal">Axie Scholar Tracker</h1>
             </div>
           </div>

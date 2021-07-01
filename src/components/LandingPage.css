@@ -1,13 +1,28 @@
 .head {
   position: relative;
   background-color: black;
-  height: 50vh;
+  height: 80vh;
   min-height: 25rem;
   width: 100%;
   overflow: hidden;
 }
 
 .head img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.head video {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -45,5 +60,11 @@
   }
   .head video {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .head {
+    height: 60vh;
   }
 }
