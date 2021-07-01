@@ -3,8 +3,6 @@ import { Field, reduxForm, reset } from "redux-form";
 import { connect } from "react-redux";
 import { createScholar, fetchScholar } from "../../actions";
 
-import WAValidator from "wallet-address-validator";
-
 import ScholarEmpty from "./ScholarEmpty";
 
 class ScholarCreate extends Component {
@@ -33,6 +31,7 @@ class ScholarCreate extends Component {
         </div>
       );
     }
+
     return (
       <div>
         <small className="text-white">{label}</small>
@@ -65,7 +64,7 @@ class ScholarCreate extends Component {
                 <Field
                   name="ethAddress"
                   component={this.renderInput}
-                  label="Ethereum Addrs."
+                  label="Ronin Address"
                 />
               </div>
               <div className="col-sm mt-2">
@@ -108,12 +107,6 @@ const validate = (formValues) => {
     errors.ethAddress = "Address required.";
   }
 
-  const valid = WAValidator.validate(formValues.ethAddress, "ETH");
-
-  if (!valid) {
-    errors.ethAddress = "Invalid ETH address.";
-  }
-
   if (!formValues.nickname) {
     errors.nickname = "Nickname required.";
   }
@@ -143,25 +136,3 @@ const formWrapped = reduxForm({
 export default connect(mapStateToProps, { createScholar, fetchScholar })(
   formWrapped
 );
-
-// Date Input
-// import date from "date-and-time";
-
-// renderDateInput({ input, label }) {
-//   const now = new Date();
-//   const dateAndTime = date.format(now, "YYYY-MM-DDTHH:mm:ss");
-
-//   return (
-//     <div className="col col-lg-12 mb-3">
-//       <div className="form-group">
-//         <label className="form-label fw-bold">{label}</label>
-//         <input
-//           className="form-control"
-//           type="datetime-local"
-//           {...input}
-//           value={dateAndTime}
-//         ></input>
-//       </div>
-//     </div>
-//   );
-// }
