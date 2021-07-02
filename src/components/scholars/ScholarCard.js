@@ -17,7 +17,7 @@ class ScholarCard extends Component {
 
     return (
       <div className="col-sm">
-        Manager SLP:{" "}
+        Manager{" "}
         <img
           className="mb-1"
           src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
@@ -25,7 +25,7 @@ class ScholarCard extends Component {
           height="15px"
           width="15px"
         />
-        {formatted}
+        : {formatted}
       </div>
     );
   }
@@ -54,7 +54,7 @@ class ScholarCard extends Component {
 
     return (
       <div className="col-sm">
-        Scholar SLP:{" "}
+        Scholar{" "}
         <img
           className="mb-1"
           src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
@@ -62,7 +62,7 @@ class ScholarCard extends Component {
           height="15px"
           width="15px"
         />
-        {formatted}
+        : {formatted}
       </div>
     );
   }
@@ -181,10 +181,26 @@ class ScholarCard extends Component {
               : <b>{new Intl.NumberFormat().format(scholar.total)}</b>
             </div>
             <div className="col-sm">
-              Unclaimed: {new Intl.NumberFormat().format(unclaimed)}
+              Unclaimed{" "}
+              <img
+                className="mb-1"
+                src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+                alt="slp"
+                height="15px"
+                width="15px"
+              />
+              : {new Intl.NumberFormat().format(unclaimed)}
             </div>
             <div className="col-sm">
-              Daily Average SLP: {new Intl.NumberFormat().format(dailyAverage)}
+              Daily Average{" "}
+              <img
+                className="mb-1"
+                src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+                alt="slp"
+                height="15px"
+                width="15px"
+              />
+              : {new Intl.NumberFormat().format(dailyAverage)}
             </div>
             <div className="col-sm">
               Days since claim: {new Intl.NumberFormat().format(sinceLastClaim)}

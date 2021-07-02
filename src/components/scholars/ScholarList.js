@@ -16,6 +16,10 @@ import ScholarEmpty from "./ScholarEmpty";
 import history from "../../history";
 
 class ScholarList extends Component {
+  state = {
+    scholarCount: 0,
+  };
+
   componentDidMount() {
     if (this.props.isSignedIn) {
       this.props.fetchScholars();
@@ -32,7 +36,7 @@ class ScholarList extends Component {
   }
 
   renderList = () => {
-    return this.props.scholars.map((scholar) => {
+    const scholarCards = this.props.scholars.map((scholar) => {
       return (
         <ScholarCard
           nickname={scholar.nickname}
@@ -41,6 +45,18 @@ class ScholarList extends Component {
         />
       );
     });
+
+    return scholarCards;
+  };
+
+  renderListTotal = () => {
+    let scholarCount = 0;
+
+    this.props.scholars.forEach(() => {
+      scholarCount++;
+    });
+
+    return scholarCount;
   };
 
   renderTotal() {
@@ -78,15 +94,16 @@ class ScholarList extends Component {
             </strong>
           </h6>
           <h6 className="col-sm small font-weight-bold text-info">
-            Total SLP:{" "}
+            Total{" "}
+            <img
+              className="mb-1"
+              src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+              alt="slp"
+              height="15px"
+              width="15px"
+            />
+            :{" "}
             <strong className="text-white total">
-              <img
-                className="mb-1"
-                src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
-                alt="slp"
-                height="15px"
-                width="15px"
-              />
               {new Intl.NumberFormat().format(totalSlp)}
             </strong>
           </h6>
@@ -121,15 +138,16 @@ class ScholarList extends Component {
         </div>
         <div className="row px-3">
           <h6 className="col-sm small font-weight-bold text-info">
-            Scholar SLP:{" "}
+            Scholar{" "}
+            <img
+              className="mb-1"
+              src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+              alt="slp"
+              height="15px"
+              width="15px"
+            />
+            :{" "}
             <strong className="text-white total">
-              <img
-                className="mb-1"
-                src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
-                alt="slp"
-                height="15px"
-                width="15px"
-              />
               {new Intl.NumberFormat().format(totalScholarSlp)}
             </strong>
           </h6>
@@ -140,15 +158,16 @@ class ScholarList extends Component {
             </strong>
           </h6>
           <h6 className="col-sm small font-weight-bold text-info">
-            Manager SLP:{" "}
+            Manager{" "}
+            <img
+              className="mb-1"
+              src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+              alt="slp"
+              height="15px"
+              width="15px"
+            />
+            :{" "}
             <strong className="text-white total">
-              <img
-                className="mb-1"
-                src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
-                alt="slp"
-                height="15px"
-                width="15px"
-              />
               {new Intl.NumberFormat().format(totalManagerSlp)}
             </strong>
           </h6>
@@ -212,11 +231,13 @@ class ScholarList extends Component {
           <ScholarForm />
           <hr />
           <div className="container">
-            <div className="row">
-              <div className="col-6">
-                <h3 className="col-12 text-warning">Scholars</h3>
+            <div className="row mb-1">
+              <div className="col-8">
+                <h4 className="col-sm text-warning">
+                  Scholars: {this.renderListTotal()}
+                </h4>
               </div>
-              <div className="col-6">{this.renderReloadButton()}</div>
+              <div className="col-4">{this.renderReloadButton()}</div>
             </div>
           </div>
 
