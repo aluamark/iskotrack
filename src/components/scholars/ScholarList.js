@@ -144,7 +144,7 @@ class ScholarList extends Component {
           this.refresh();
         }}
       >
-        <i className="fas fa-redo pe-2"></i>
+        <i className="fas fa-redo pe-1"></i>
         Reload Data
       </button>
     );

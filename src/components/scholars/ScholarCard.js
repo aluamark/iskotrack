@@ -137,7 +137,7 @@ class ScholarCard extends Component {
                 </a>
                 <button
                   type="button"
-                  className="btn"
+                  className="btn ms-1"
                   onClick={() => {
                     this.props.fetchScholar(this.props.ethAddress);
                   }}
