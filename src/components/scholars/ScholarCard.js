@@ -105,6 +105,8 @@ class ScholarCard extends Component {
 
     const shortEthAdd = `${first4}...${last4}`;
 
+    const viewAxieAddrs = clientId.replace("0x", "ronin:");
+
     return (
       <div className="card my-2 text-dark">
         <div className="card-header">
@@ -127,7 +129,7 @@ class ScholarCard extends Component {
                 role="group"
               >
                 <a
-                  href={`https://marketplace.axieinfinity.com/profile/${this.props.ethAddress}/axie`}
+                  href={`https://marketplace.axieinfinity.com/profile/${viewAxieAddrs}/axie`}
                   target="_blank"
                   rel="noreferrer"
                 >
