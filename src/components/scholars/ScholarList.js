@@ -72,36 +72,91 @@ class ScholarList extends Component {
       <div>
         <div className="row mt-2 px-3">
           <h6 className="col-sm small font-weight-bold text-info">
-            Total PHP: <strong className="text-white total">{totalPhp}</strong>
+            Total PHP:{" "}
+            <strong className="text-white total">
+              ₱{new Intl.NumberFormat().format(totalPhp)}
+            </strong>
           </h6>
           <h6 className="col-sm small font-weight-bold text-info">
-            Total SLP: <strong className="text-white total">{totalSlp}</strong>
+            Total SLP:{" "}
+            <strong className="text-white total">
+              <img
+                className="mb-1"
+                src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+                alt="slp"
+                height="15px"
+                width="15px"
+              />
+              {new Intl.NumberFormat().format(totalSlp)}
+            </strong>
           </h6>
           <h6 className="col-sm small font-weight-bold text-info">
-            AXS in PHP:{" "}
-            <strong className="text-white total">{this.props.axsPrice}</strong>
+            AXS{" "}
+            <img
+              className="mb-1"
+              src="https://assets.coingecko.com/coins/images/13029/small/axie_infinity_logo.png?1604471082"
+              alt="slp"
+              height="15px"
+              width="15px"
+            />
+            :{" "}
+            <strong className="text-white total">
+              ₱{new Intl.NumberFormat().format(this.props.axsPrice)}
+            </strong>
           </h6>
           <h6 className="col-sm small font-weight-bold text-info">
-            SLP in PHP:{" "}
-            <strong className="text-white total">{this.props.slpPrice}</strong>
+            SLP{" "}
+            <img
+              className="mb-1"
+              src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+              alt="slp"
+              height="15px"
+              width="15px"
+            />
+            :{" "}
+            <strong className="text-white total">
+              ₱{new Intl.NumberFormat().format(this.props.slpPrice)}
+            </strong>
           </h6>
         </div>
         <div className="row px-3">
           <h6 className="col-sm small font-weight-bold text-info">
             Scholar SLP:{" "}
-            <strong className="text-white total">{totalScholarSlp}</strong>
+            <strong className="text-white total">
+              <img
+                className="mb-1"
+                src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+                alt="slp"
+                height="15px"
+                width="15px"
+              />
+              {new Intl.NumberFormat().format(totalScholarSlp)}
+            </strong>
           </h6>
           <h6 className="col-sm small font-weight-bold text-info">
             Scholar PHP:{" "}
-            <strong className="text-white total">{totalScholarPhp}</strong>
+            <strong className="text-white total">
+              ₱{new Intl.NumberFormat().format(totalScholarPhp)}
+            </strong>
           </h6>
           <h6 className="col-sm small font-weight-bold text-info">
             Manager SLP:{" "}
-            <strong className="text-white total">{totalManagerSlp}</strong>
+            <strong className="text-white total">
+              <img
+                className="mb-1"
+                src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+                alt="slp"
+                height="15px"
+                width="15px"
+              />
+              {new Intl.NumberFormat().format(totalManagerSlp)}
+            </strong>
           </h6>
           <h6 className="col-sm small font-weight-bold text-info">
             Manager PHP:{" "}
-            <strong className="text-white total">{totalManagerPhp}</strong>
+            <strong className="text-white total">
+              ₱{new Intl.NumberFormat().format(totalManagerPhp)}
+            </strong>
           </h6>
         </div>
       </div>

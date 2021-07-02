@@ -4,10 +4,16 @@ import { connect } from "react-redux";
 import { signIn, showLoader } from "../actions";
 
 class LoginForm extends Component {
-  renderInput = ({ input, label, type }) => {
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return <small className="text-danger float-start">{error}</small>;
+    }
+  }
+
+  renderInput = ({ input, label, type, meta }) => {
     return (
       <div>
-        <small className="text-white">{label}</small>
+        <small className="text-white float-start">{label}</small>
         <input
           className="form-control form-control-sm"
           placeholder={label}
@@ -15,6 +21,7 @@ class LoginForm extends Component {
           type={type}
           {...input}
         />
+        {this.renderError(meta)}
       </div>
     );
   };
@@ -76,12 +83,27 @@ class LoginForm extends Component {
   }
 }
 
+const validate = (formValues) => {
+  const errors = {};
+
+  if (!formValues.email) {
+    errors.email = "Email required.";
+  }
+
+  if (!formValues.password) {
+    errors.password = "Password required.";
+  }
+
+  return errors;
+};
+
 const mapStateToProps = (state) => {
   return { isSignedIn: state.auth.isSignedIn, loading: state.auth.loading };
 };
 
 const formWrapped = reduxForm({
   form: "loginForm",
+  validate,
 })(LoginForm);
 
 export default connect(mapStateToProps, { signIn, showLoader })(formWrapped);

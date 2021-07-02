@@ -13,6 +13,8 @@ class ScholarCard extends Component {
     const scholarSlp = (this.props.sharePercentage / 100) * totalSlp;
     const managerSlp = Math.floor(totalSlp - scholarSlp);
 
+    const formatted = new Intl.NumberFormat().format(managerSlp);
+
     return (
       <div className="col-sm">
         Manager SLP:{" "}
@@ -23,7 +25,7 @@ class ScholarCard extends Component {
           height="15px"
           width="15px"
         />
-        {managerSlp}
+        {formatted}
       </div>
     );
   }
@@ -34,9 +36,11 @@ class ScholarCard extends Component {
       (totalSlp - scholarSlp) * this.props.slpPrice
     );
 
+    const formatted = new Intl.NumberFormat().format(managerPhp);
+
     return (
       <div className="col-sm">
-        Manager PHP: <b className="text-success">₱{managerPhp}</b>
+        Manager PHP: <b className="text-success">₱{formatted}</b>
       </div>
     );
   }
@@ -45,6 +49,8 @@ class ScholarCard extends Component {
     const scholarSlp = Math.floor(
       (this.props.sharePercentage / 100) * totalSlp
     );
+
+    const formatted = new Intl.NumberFormat().format(scholarSlp);
 
     return (
       <div className="col-sm">
@@ -56,7 +62,7 @@ class ScholarCard extends Component {
           height="15px"
           width="15px"
         />
-        {scholarSlp}
+        {formatted}
       </div>
     );
   }
@@ -67,9 +73,11 @@ class ScholarCard extends Component {
     );
     const totalPhp = Math.floor(scholarSlp * this.props.slpPrice);
 
+    const formatted = new Intl.NumberFormat().format(totalPhp);
+
     return (
       <div className="col-sm">
-        Scholar PHP: <b className="text-success">₱{totalPhp}</b>
+        Scholar PHP: <b className="text-success">₱{formatted}</b>
       </div>
     );
   }
@@ -170,11 +178,17 @@ class ScholarCard extends Component {
                 height="15px"
                 width="15px"
               />
-              : <b>{scholar.total}</b>
+              : <b>{new Intl.NumberFormat().format(scholar.total)}</b>
             </div>
-            <div className="col-sm">Unclaimed: {unclaimed}</div>
-            <div className="col-sm">Daily Average SLP: {dailyAverage}</div>
-            <div className="col-sm">Days since claim: {sinceLastClaim}</div>
+            <div className="col-sm">
+              Unclaimed: {new Intl.NumberFormat().format(unclaimed)}
+            </div>
+            <div className="col-sm">
+              Daily Average SLP: {new Intl.NumberFormat().format(dailyAverage)}
+            </div>
+            <div className="col-sm">
+              Days since claim: {new Intl.NumberFormat().format(sinceLastClaim)}
+            </div>
           </div>
           <div className="row">
             {this.getScholarTotalSlp(unclaimed)}

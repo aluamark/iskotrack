@@ -49,7 +49,6 @@ class ScholarCreate extends Component {
   onSubmit = (formValues, dispatch) => {
     this.props.createScholar(formValues);
     dispatch(reset("scholarCreate"));
-    console.log(formValues.ethAddress.length);
   };
 
   render() {
@@ -88,7 +87,7 @@ class ScholarCreate extends Component {
                   type="submit"
                   className="btn btn-warning btn-sm col-12 mt-4"
                 >
-                  Add Scholar
+                  <i className="fas fa-user-plus"></i> Add Scholar
                 </button>
               </div>
             </div>
