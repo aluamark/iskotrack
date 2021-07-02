@@ -49,6 +49,7 @@ class ScholarCreate extends Component {
   onSubmit = (formValues, dispatch) => {
     this.props.createScholar(formValues);
     dispatch(reset("scholarCreate"));
+    console.log(formValues.ethAddress.length);
   };
 
   render() {

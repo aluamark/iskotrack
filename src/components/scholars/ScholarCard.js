@@ -92,7 +92,7 @@ class ScholarCard extends Component {
     const unclaimed = scholar.total - scholar.claimable_total;
     const unix_timestamp = scholar.last_claimed_item_at;
     const date = new Date(unix_timestamp * 1000);
-    const last_claim = date.toLocaleDateString();
+    // const last_claim = date.toLocaleDateString();
     const dateToday = new Date();
     const differenceInTime = dateToday.getTime() - date.getTime();
     const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
@@ -116,10 +116,11 @@ class ScholarCard extends Component {
               <small>{this.props.sharePercentage}%</small>
             </div>
             <div className="col-sm-9">
+              <small>Ronin: </small>
+              <small className="pe-2">{shortEthAdd}</small>
               <CopyToClipboard text={scholar.client_id}>
                 <i style={{ cursor: "pointer" }} className="far fa-copy"></i>
               </CopyToClipboard>
-              <small className="ps-2">{shortEthAdd}</small>
             </div>
             <div className="col-sm"></div>
             <div className="col-sm"></div>
@@ -171,15 +172,15 @@ class ScholarCard extends Component {
               />
               : <b>{scholar.total}</b>
             </div>
+            <div className="col-sm">Unclaimed: {unclaimed}</div>
             <div className="col-sm">Daily Average SLP: {dailyAverage}</div>
-            <div className="col-sm">Claimed: {last_claim}</div>
             <div className="col-sm">Days since claim: {sinceLastClaim}</div>
           </div>
           <div className="row">
-            {this.getScholarTotalSlp(scholar.total)}
-            {this.getScholarTotalPhp(scholar.total)}
-            {this.getManagerTotalSlp(scholar.total)}
-            {this.getManagerTotalPhp(scholar.total)}
+            {this.getScholarTotalSlp(unclaimed)}
+            {this.getScholarTotalPhp(unclaimed)}
+            {this.getManagerTotalSlp(unclaimed)}
+            {this.getManagerTotalPhp(unclaimed)}
           </div>
         </div>
       </div>
