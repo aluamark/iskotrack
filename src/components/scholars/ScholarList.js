@@ -60,29 +60,29 @@ class ScholarList extends Component {
   };
 
   renderTotal() {
-    let totalSlp = 0;
-    let totalPhp = 0;
-    let totalScholarSlp = 0;
-    let totalScholarPhp = 0;
-    let totalManagerSlp = 0;
-    let totalManagerPhp = 0;
-    this.props.scholarsData.forEach((scholar) => {
-      totalSlp = totalSlp + scholar.total;
-      totalPhp = Math.floor(totalSlp * this.props.slpPrice);
+    // let totalSlp = 0;
+    // let totalPhp = 0;
+    // let totalScholarSlp = 0;
+    // let totalScholarPhp = 0;
+    // // let totalManagerSlp = 0;
+    // // let totalManagerPhp = 0;
+    // this.props.scholarsData.forEach((scholar) => {
+    //   totalSlp = totalSlp + scholar.total;
+    //   totalPhp = Math.floor(totalSlp * this.props.slpPrice);
 
-      const filteredScho = this.props.scholars.filter((scho) => {
-        return scho.ethAddress === scholar.client_id;
-      });
+    //   const filteredScho = this.props.scholars.filter((scho) => {
+    //     return scho.ethAddress === scholar.client_id;
+    //   });
 
-      const scholarShare = filteredScho[0].sharePercentage;
-      const scholarSlp = (scholarShare / 100) * scholar.total;
+    //   const scholarShare = filteredScho[0].sharePercentage;
+    //   const scholarSlp = (scholarShare / 100) * scholar.total;
 
-      totalScholarSlp = Math.floor(totalScholarSlp + scholarSlp);
-      totalScholarPhp = Math.floor(totalScholarSlp * this.props.slpPrice);
+    //   totalScholarSlp = Math.floor(totalScholarSlp + scholarSlp);
+    //   totalScholarPhp = Math.floor(totalScholarSlp * this.props.slpPrice);
 
-      totalManagerSlp = totalSlp - totalScholarSlp;
-      totalManagerPhp = totalPhp - totalScholarPhp;
-    });
+    //   // totalManagerSlp = totalSlp - totalScholarSlp;
+    //   // totalManagerPhp = totalPhp - totalScholarPhp;
+    // });
 
     return (
       <div>
