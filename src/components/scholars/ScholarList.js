@@ -87,7 +87,7 @@ class ScholarList extends Component {
     return (
       <div>
         <div className="row mt-2 px-3">
-          <h6 className="col-sm small font-weight-bold text-info">
+          {/* <h6 className="col-sm small font-weight-bold text-info">
             Total PHP:{" "}
             <strong className="text-white total">
               ₱{new Intl.NumberFormat().format(totalPhp)}
@@ -106,7 +106,7 @@ class ScholarList extends Component {
             <strong className="text-white total">
               {new Intl.NumberFormat().format(totalSlp)}
             </strong>
-          </h6>
+          </h6> */}
           <h6 className="col-sm small font-weight-bold text-info">
             AXS{" "}
             <img
@@ -137,7 +137,7 @@ class ScholarList extends Component {
           </h6>
         </div>
         <div className="row px-3">
-          <h6 className="col-sm small font-weight-bold text-info">
+          {/* <h6 className="col-sm small font-weight-bold text-info">
             Scholar{" "}
             <img
               className="mb-1"
@@ -176,7 +176,7 @@ class ScholarList extends Component {
             <strong className="text-white total">
               ₱{new Intl.NumberFormat().format(totalManagerPhp)}
             </strong>
-          </h6>
+          </h6> */}
         </div>
       </div>
     );
