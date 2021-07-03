@@ -219,7 +219,7 @@ class ScholarList extends Component {
         }}
       >
         <i className="fas fa-redo pe-1"></i>
-        Reload Data
+        Reload
       </button>
     );
   }
@@ -232,12 +232,12 @@ class ScholarList extends Component {
           <hr />
           <div className="container">
             <div className="row mb-1">
-              <div className="col-8">
+              <div className="col-7">
                 <h4 className="col-sm text-warning">
                   Scholars: {this.renderListTotal()}
                 </h4>
               </div>
-              <div className="col-4">{this.renderReloadButton()}</div>
+              <div className="col-5">{this.renderReloadButton()}</div>
             </div>
           </div>
 
