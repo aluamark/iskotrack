@@ -243,7 +243,7 @@ class ScholarList extends Component {
             role="status"
             aria-hidden="true"
           ></span>{" "}
-          Reload Data
+          Reload
         </button>
       );
     }
