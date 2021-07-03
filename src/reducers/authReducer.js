@@ -12,6 +12,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isSignedIn: action.payload.isSignedIn,
         userId: action.payload.userId,
+        email: action.payload.email,
       };
     case "SHOW_LOADER":
       return { ...state, loading: true };

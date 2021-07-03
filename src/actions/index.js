@@ -40,11 +40,12 @@ export const signIn = (formValues) => async (dispatch) => {
 
     const data = response.data;
     const userId = data.user._id;
+    const email = data.user.email;
 
     sessionStorage.setItem("Token", data.token);
     sessionStorage.setItem("UserId", userId);
 
-    dispatch({ type: SIGN_IN, payload: { isSignedIn: true, userId } });
+    dispatch({ type: SIGN_IN, payload: { isSignedIn: true, userId, email } });
     history.push(`/scholars`);
   } catch (error) {
     dispatch({ type: "HIDE_LOADER" });
