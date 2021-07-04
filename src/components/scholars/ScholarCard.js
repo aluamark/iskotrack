@@ -11,7 +11,7 @@ class ScholarCard extends Component {
 
   getManagerTotalSlp(totalSlp) {
     const scholarSlp = (this.props.sharePercentage / 100) * totalSlp;
-    const managerSlp = Math.floor(totalSlp - scholarSlp);
+    const managerSlp = Math.round(totalSlp - scholarSlp);
 
     const formatted = new Intl.NumberFormat().format(managerSlp);
 
@@ -32,7 +32,7 @@ class ScholarCard extends Component {
 
   getManagerTotalPhp(totalSlp) {
     const scholarSlp = (this.props.sharePercentage / 100) * totalSlp;
-    const managerPhp = Math.floor(
+    const managerPhp = Math.round(
       (totalSlp - scholarSlp) * this.props.slpPrice
     );
 
@@ -46,7 +46,7 @@ class ScholarCard extends Component {
   }
 
   getScholarTotalSlp(totalSlp) {
-    const scholarSlp = Math.floor(
+    const scholarSlp = Math.round(
       (this.props.sharePercentage / 100) * totalSlp
     );
 
@@ -71,7 +71,7 @@ class ScholarCard extends Component {
     const scholarSlp = Math.floor(
       (this.props.sharePercentage / 100) * totalSlp
     );
-    const totalPhp = Math.floor(scholarSlp * this.props.slpPrice);
+    const totalPhp = Math.round(scholarSlp * this.props.slpPrice);
 
     const formatted = new Intl.NumberFormat().format(totalPhp);
 
@@ -181,7 +181,7 @@ class ScholarCard extends Component {
               : <b>{new Intl.NumberFormat().format(scholar.total)}</b>
             </div>
             <div className="col-sm">
-              Unclaimed{" "}
+              {sinceLastClaim > 14 ? "Claimable" : "Unclaimable"}{" "}
               <img
                 className="mb-1"
                 src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
