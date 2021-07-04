@@ -58,9 +58,11 @@ export const bypass = (session) => async (dispatch) => {
       `/user/bypassLogin/${session.userId}/${session.token}`
     );
 
-    const userId = response.data[0]._id;
+    const data = response.data;
+    const userId = data.user._id;
+    const email = data.user.email;
 
-    dispatch({ type: SIGN_IN, payload: { isSignedIn: true, userId } });
+    dispatch({ type: SIGN_IN, payload: { isSignedIn: true, userId, email } });
     history.push(`/scholars`);
   } catch (error) {
     dispatch({ type: "HIDE_LOADER" });
