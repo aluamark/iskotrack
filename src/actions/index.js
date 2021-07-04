@@ -59,7 +59,7 @@ export const bypass = (session) => async (dispatch) => {
     );
 
     const userId = response.data[0]._id;
-    const email = response.date[0].email;
+    const email = response.data[0].email;
 
     dispatch({ type: SIGN_IN, payload: { isSignedIn: true, userId, email } });
     history.push(`/scholars`);

@@ -3,6 +3,7 @@ const INITIAL_STATE = {
   userId: null,
   loading: false,
   reloadLoading: false,
+  email: null,
 };
 
 const authReducer = (state = INITIAL_STATE, action) => {
