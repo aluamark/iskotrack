@@ -58,9 +58,8 @@ export const bypass = (session) => async (dispatch) => {
       `/user/bypassLogin/${session.userId}/${session.token}`
     );
 
-    const data = response.data;
-    const userId = data.user._id;
-    const email = data.user.email;
+    const userId = response.data[0]._id;
+    const email = response.date[0].email;
 
     dispatch({ type: SIGN_IN, payload: { isSignedIn: true, userId, email } });
     history.push(`/scholars`);
