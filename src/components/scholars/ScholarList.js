@@ -263,25 +263,39 @@ class ScholarList extends Component {
     );
   }
 
-  renderScholarForm() {
-    if (
-      this.props.email === "smashaxie@gmail.com" ||
-      this.props.email === "crjaxie@gmail.com"
-    ) {
-      return (
-        <div>
-          <ScholarForm />
-          <hr />
-        </div>
-      );
-    }
-  }
-
   render() {
     if (this.props.isSignedIn) {
       return (
-        <div className="container text-white">
-          {this.renderScholarForm()}
+        <div className="container">
+          <div className="container my-2">
+            <div className="accordion" id="accordionExample">
+              <div className="accordion-item bg-dark">
+                <h2 className="accordion-header bg-dark" id="headingOne">
+                  <button
+                    className="accordion-button collapsed bg-secondary text-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="false"
+                    aria-controls="collapseOne"
+                  >
+                    Add Scholar
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  className="accordion-collapse collapse"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div className="accordion-body">
+                    <ScholarForm />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="container">
             <div className="row mb-1">
               <div className="col-7">

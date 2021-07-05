@@ -60,14 +60,14 @@ class ScholarCreate extends Component {
             className="text-dark"
           >
             <div className="row">
-              <div className="col-sm mt-2">
+              <div className="col-sm">
                 <Field
                   name="ethAddress"
                   component={this.renderInput}
                   label="Ronin Address"
                 />
               </div>
-              <div className="col-sm mt-2">
+              <div className="col-sm">
                 <Field
                   name="nickname"
                   component={this.renderInput}
@@ -75,14 +75,14 @@ class ScholarCreate extends Component {
                 />
               </div>
 
-              <div className="col-sm mt-2">
+              <div className="col-sm">
                 <Field
                   name="sharePercentage"
                   component={this.renderInput}
                   label="Scholar Share"
                 />
               </div>
-              <div className="col-sm mt-2">
+              <div className="col-sm">
                 <button
                   type="submit"
                   className="btn btn-warning btn-sm col-12 mt-4"
