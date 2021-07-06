@@ -115,7 +115,7 @@ class ScholarCard extends Component {
 
     const viewAxieAddrs = clientId.replace("0x", "ronin:");
 
-    if (this.props.email === "smashaxie@gmail.com") {
+    if (this.props.email !== "aluamark@gmail.com") {
       return (
         <div className="card my-2 text-dark">
           <div className="card-header">
