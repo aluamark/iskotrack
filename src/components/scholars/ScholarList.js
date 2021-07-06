@@ -188,7 +188,7 @@ class ScholarList extends Component {
     return (
       <div>
         <div className="row mt-2 px-3">
-          <h6 className="col-sm small font-weight-bold text-info">
+          <h6 className="col-6 small font-weight-bold text-info">
             AXS{" "}
             <img
               className="mb-1"
@@ -202,7 +202,7 @@ class ScholarList extends Component {
               ₱{new Intl.NumberFormat().format(this.props.axsPrice)}
             </strong>
           </h6>
-          <h6 className="col-sm small font-weight-bold text-info">
+          <h6 className="col-6 small font-weight-bold text-info">
             SLP{" "}
             <img
               className="mb-1"
