@@ -62,7 +62,7 @@ class ScholarCard extends Component {
           height="15px"
           width="15px"
         />
-        : {formatted}
+        : <b className="text-success">{formatted}</b>
       </div>
     );
   }
@@ -115,106 +115,185 @@ class ScholarCard extends Component {
 
     const viewAxieAddrs = clientId.replace("0x", "ronin:");
 
-    return (
-      <div className="card my-2 text-dark">
-        <div className="card-header">
-          <div className="row">
-            <div className="col-sm-3">
-              <strong className="me-1">{this.props.nickname}</strong>
-              <small>{this.props.sharePercentage}%</small>
+    if (this.props.email === "smashaxie@gmail.com") {
+      return (
+        <div className="card my-2 text-dark">
+          <div className="card-header">
+            <div className="row">
+              <div className="col-sm-3">
+                <strong className="me-1">{this.props.nickname}</strong>
+                <small>{this.props.sharePercentage}%</small>
+              </div>
+              <div className="col-sm-9">
+                <small>Ronin: </small>
+                <small className="pe-2">{shortEthAdd}</small>
+                <CopyToClipboard text={scholar.client_id}>
+                  <i style={{ cursor: "pointer" }} className="far fa-copy"></i>
+                </CopyToClipboard>
+              </div>
+              <div className="col-sm"></div>
+              <div className="col-sm"></div>
+              <div className="text-end">
+                <div
+                  className="btn-group-sm p-1 position-absolute top-0 end-0"
+                  role="group"
+                >
+                  <a
+                    href={`https://marketplace.axieinfinity.com/profile/${viewAxieAddrs}/axie`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span className="badge bg-secondary">View Axies</span>
+                  </a>
+                  <button
+                    type="button"
+                    className="btn ms-1"
+                    onClick={() => {
+                      this.props.fetchScholar(this.props.ethAddress);
+                    }}
+                  >
+                    <i className="fas fa-redo"></i>
+                  </button>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => {
+                      this.props.deleteScholar(this.props.ethAddress);
+                      this.props.deleteScholarData(this.props.ethAddress);
+                    }}
+                  >
+                    <i className="fas fa-user-times text-danger"></i>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="col-sm-9">
-              <small>Ronin: </small>
-              <small className="pe-2">{shortEthAdd}</small>
-              <CopyToClipboard text={scholar.client_id}>
-                <i style={{ cursor: "pointer" }} className="far fa-copy"></i>
-              </CopyToClipboard>
+          </div>
+          <div className="card-body small">
+            <div className="row">
+              <div className="col-sm">
+                Total{" "}
+                <img
+                  className="mb-1"
+                  src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+                  alt="slp"
+                  height="15px"
+                  width="15px"
+                />
+                : <b>{new Intl.NumberFormat().format(scholar.total)}</b>
+              </div>
+              <div className="col-sm">
+                {sinceLastClaim > 14 ? "Claimable" : "Unclaimable"}{" "}
+                <img
+                  className="mb-1"
+                  src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+                  alt="slp"
+                  height="15px"
+                  width="15px"
+                />
+                : {new Intl.NumberFormat().format(unclaimed)}
+              </div>
+              <div className="col-sm">
+                Daily Average{" "}
+                <img
+                  className="mb-1"
+                  src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+                  alt="slp"
+                  height="15px"
+                  width="15px"
+                />
+                : {new Intl.NumberFormat().format(dailyAverage)}
+              </div>
+              <div className="col-sm">
+                Days since claim:{" "}
+                {new Intl.NumberFormat().format(sinceLastClaim)}
+              </div>
             </div>
-            <div className="col-sm"></div>
-            <div className="col-sm"></div>
-            <div className="text-end">
-              <div
-                className="btn-group-sm p-1 position-absolute top-0 end-0"
-                role="group"
-              >
-                <a
-                  href={`https://marketplace.axieinfinity.com/profile/${viewAxieAddrs}/axie`}
-                  target="_blank"
-                  rel="noreferrer"
+            <div className="row">
+              {this.getScholarTotalSlp(unclaimed)}
+              {this.getScholarTotalPhp(unclaimed)}
+              {this.getManagerTotalSlp(unclaimed)}
+              {this.getManagerTotalPhp(unclaimed)}
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="card my-2 text-dark">
+          <div className="card-header">
+            <div className="row">
+              <div className="col-sm-3">
+                <strong className="me-1">{this.props.nickname}</strong>
+                <small>{this.props.sharePercentage}%</small>
+              </div>
+              <div className="col-sm-9">
+                <small>Ronin: </small>
+                <small className="pe-2">{shortEthAdd}</small>
+                <CopyToClipboard text={scholar.client_id}>
+                  <i style={{ cursor: "pointer" }} className="far fa-copy"></i>
+                </CopyToClipboard>
+              </div>
+              <div className="col-sm"></div>
+              <div className="col-sm"></div>
+              <div className="text-end">
+                <div
+                  className="btn-group-sm p-1 position-absolute top-0 end-0"
+                  role="group"
                 >
-                  <span className="badge bg-secondary">View Axies</span>
-                </a>
-                <button
-                  type="button"
-                  className="btn ms-1"
-                  onClick={() => {
-                    this.props.fetchScholar(this.props.ethAddress);
-                  }}
-                >
-                  <i className="fas fa-redo"></i>
-                </button>
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => {
-                    this.props.deleteScholar(this.props.ethAddress);
-                    this.props.deleteScholarData(this.props.ethAddress);
-                  }}
-                >
-                  <i className="fas fa-user-times text-danger"></i>
-                </button>
+                  <a
+                    href={`https://marketplace.axieinfinity.com/profile/${viewAxieAddrs}/axie`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span className="badge bg-secondary">View Axies</span>
+                  </a>
+                  <button
+                    type="button"
+                    className="btn ms-1"
+                    onClick={() => {
+                      this.props.fetchScholar(this.props.ethAddress);
+                    }}
+                  >
+                    <i className="fas fa-redo"></i>
+                  </button>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => {
+                      this.props.deleteScholar(this.props.ethAddress);
+                      this.props.deleteScholarData(this.props.ethAddress);
+                    }}
+                  >
+                    <i className="fas fa-user-times text-danger"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="card-body small">
+            <div className="row">
+              {this.getScholarTotalSlp(unclaimed)}
+              {this.getScholarTotalPhp(unclaimed)}
+              <div className="col-sm">
+                Daily Average{" "}
+                <img
+                  className="mb-1"
+                  src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
+                  alt="slp"
+                  height="15px"
+                  width="15px"
+                />
+                : {new Intl.NumberFormat().format(dailyAverage)}
+              </div>
+              <div className="col-sm">
+                Days since claim:{" "}
+                {new Intl.NumberFormat().format(sinceLastClaim)}
               </div>
             </div>
           </div>
         </div>
-        <div className="card-body small">
-          <div className="row">
-            <div className="col-sm">
-              Total{" "}
-              <img
-                className="mb-1"
-                src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
-                alt="slp"
-                height="15px"
-                width="15px"
-              />
-              : <b>{new Intl.NumberFormat().format(scholar.total)}</b>
-            </div>
-            <div className="col-sm">
-              {sinceLastClaim > 14 ? "Claimable" : "Unclaimable"}{" "}
-              <img
-                className="mb-1"
-                src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
-                alt="slp"
-                height="15px"
-                width="15px"
-              />
-              : {new Intl.NumberFormat().format(unclaimed)}
-            </div>
-            <div className="col-sm">
-              Daily Average{" "}
-              <img
-                className="mb-1"
-                src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
-                alt="slp"
-                height="15px"
-                width="15px"
-              />
-              : {new Intl.NumberFormat().format(dailyAverage)}
-            </div>
-            <div className="col-sm">
-              Days since claim: {new Intl.NumberFormat().format(sinceLastClaim)}
-            </div>
-          </div>
-          <div className="row">
-            {this.getScholarTotalSlp(unclaimed)}
-            {this.getScholarTotalPhp(unclaimed)}
-            {this.getManagerTotalSlp(unclaimed)}
-            {this.getManagerTotalPhp(unclaimed)}
-          </div>
-        </div>
-      </div>
-    );
+      );
+    }
   }
 
   render() {
@@ -228,6 +307,7 @@ const mapStateToProps = (state, ownProps) => {
     sharePercentage: state.scholars[ownProps.ethAddress].sharePercentage,
     nickname: state.scholars[ownProps.ethAddress].nickname,
     slpPrice: state.slpData.slpPrice,
+    email: state.auth.email,
   };
 };
 

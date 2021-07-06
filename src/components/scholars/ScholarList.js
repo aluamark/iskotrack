@@ -60,7 +60,7 @@ class ScholarList extends Component {
   };
 
   renderTotal() {
-    if (this.props.email === "smashaxie@gmail.com") {
+    if (this.props.email !== "aluamark@gmail.com") {
       let totalSlp = 0;
       let totalPhp = 0;
       let totalScholarSlp = 0;
@@ -263,39 +263,46 @@ class ScholarList extends Component {
     );
   }
 
-  render() {
-    if (this.props.isSignedIn) {
+  renderScholarForm() {
+    if (this.props.email !== "aluamark@gmail.com") {
       return (
-        <div className="container">
-          <div className="container my-2">
-            <div className="accordion" id="accordionExample">
-              <div className="accordion-item bg-dark">
-                <h2 className="accordion-header bg-dark" id="headingOne">
-                  <button
-                    className="accordion-button collapsed bg-secondary text-white"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne"
-                    aria-expanded="false"
-                    aria-controls="collapseOne"
-                  >
-                    Add Scholar
-                  </button>
-                </h2>
-                <div
-                  id="collapseOne"
-                  className="accordion-collapse collapse"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#accordionExample"
+        <div className="container my-2">
+          <div className="accordion" id="accordionExample">
+            <div className="accordion-item bg-dark">
+              <h2 className="accordion-header bg-dark" id="headingOne">
+                <button
+                  className="accordion-button collapsed bg-secondary text-white"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="false"
+                  aria-controls="collapseOne"
                 >
-                  <div className="accordion-body">
-                    <ScholarForm />
-                  </div>
+                  Add Scholar
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                className="accordion-collapse collapse"
+                aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample"
+              >
+                <div className="accordion-body">
+                  <ScholarForm />
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      );
+    }
+  }
 
+  render() {
+    if (this.props.isSignedIn) {
+      return (
+        <div className="container">
+          {this.renderScholarForm()}
           <div className="container">
             <div className="row mb-1">
               <div className="col-7">
