@@ -264,7 +264,7 @@ class ScholarList extends Component {
   }
 
   renderScholarForm() {
-    if (this.props.email !== "aluamark@gmail.com") {
+    if (this.props.email) {
       return (
         <div className="container my-2">
           <div className="accordion" id="accordionExample">
