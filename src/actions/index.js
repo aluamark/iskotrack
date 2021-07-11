@@ -42,8 +42,8 @@ export const signIn = (formValues) => async (dispatch) => {
     const userId = data.user._id;
     const email = data.user.email;
 
-    sessionStorage.setItem("Token", data.token);
-    sessionStorage.setItem("UserId", userId);
+    localStorage.setItem("Token", data.token);
+    localStorage.setItem("UserId", userId);
 
     dispatch({ type: SIGN_IN, payload: { isSignedIn: true, userId, email } });
     history.push(`/scholars`);
@@ -70,7 +70,7 @@ export const bypass = (session) => async (dispatch) => {
 };
 
 export const signOut = () => async (dispatch) => {
-  const token = sessionStorage.getItem("Token");
+  const token = localStorage.getItem("Token");
 
   await scholar.post(
     "/user/logout",
@@ -82,7 +82,7 @@ export const signOut = () => async (dispatch) => {
       },
     }
   );
-  sessionStorage.clear();
+  localStorage.clear();
   dispatch({ type: SIGN_OUT });
   history.push(`/`);
 };

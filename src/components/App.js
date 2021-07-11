@@ -14,8 +14,8 @@ import history from "../history";
 
 class App extends Component {
   render() {
-    const userId = sessionStorage.getItem("UserId");
-    const token = sessionStorage.getItem("Token");
+    const userId = localStorage.getItem("UserId");
+    const token = localStorage.getItem("Token");
     const session = { userId, token };
     if (userId && token) {
       this.props.bypass(session);
