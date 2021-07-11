@@ -88,24 +88,63 @@ export const signOut = () => async (dispatch) => {
 };
 
 export const fetchScholars = () => async (dispatch, getState) => {
+  const token = localStorage.getItem("Token");
   const { userId } = getState().auth;
-  const response = await scholar.get(`/scholars/user/${userId}`);
+  const response = await scholar.get(`/scholars/user/${userId}`, {
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   dispatch({ type: FETCH_SCHOLARS, payload: response.data });
 };
 
 export const fetchScholar = (id) => async (dispatch) => {
-  const response = await lunacian.get(`/${id}/items/1`);
+  const token = localStorage.getItem("Token");
+  const response = await lunacian.get(`/${id}/items/1`, {
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   dispatch({ type: FETCH_SCHOLAR, payload: response.data });
 };
 
+export const updateDailyAverage =
+  (ethAddress, dailyAverage) => async (dispatch) => {
+    const token = localStorage.getItem("Token");
+    const response = await scholar.patch(
+      `/scholars/updateDailyAve/${ethAddress}`,
+      { dailyAverage },
+      {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    dispatch({ type: "UPDATE_DAILY_AVERAGE", payload: response.data });
+  };
+
 export const createScholar = (formValues) => async (dispatch, getState) => {
+  const token = localStorage.getItem("Token");
   const { userId } = getState().auth;
-  const response = await scholar.post("/scholars/create", {
-    ...formValues,
-    userId,
-  });
+  const response = await scholar.post(
+    "/scholars/create",
+    {
+      ...formValues,
+      userId,
+    },
+    {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
   dispatch({ type: CREATE_SCHOLAR, payload: response.data });
 };

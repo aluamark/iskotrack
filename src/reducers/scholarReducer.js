@@ -15,6 +15,8 @@ const scholarReducer = (state = {}, action) => {
       return { ...state, [action.payload.ethAddress]: action.payload };
     case EDIT_SCHOLAR:
       return { ...state, [action.payload.ethAddress]: action.payload };
+    case "UPDATE_DAILY_AVERAGE":
+      return { ...state, [action.payload.ethAddress]: action.payload };
     case DELETE_SCHOLAR:
       return _.omit(state, action.payload);
     default:

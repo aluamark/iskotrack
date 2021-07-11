@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchScholar, deleteScholar, deleteScholarData } from "../../actions";
+import {
+  fetchScholar,
+  deleteScholar,
+  deleteScholarData,
+  updateDailyAverage,
+} from "../../actions";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
@@ -114,6 +119,8 @@ class ScholarCard extends Component {
     const shortEthAdd = `${first4}...${last4}`;
 
     const viewAxieAddrs = clientId.replace("0x", "ronin:");
+
+    this.props.updateDailyAverage(clientId, dailyAverage);
 
     if (this.props.email !== "aluamark@gmail.com") {
       return (
@@ -315,4 +322,5 @@ export default connect(mapStateToProps, {
   fetchScholar,
   deleteScholar,
   deleteScholarData,
+  updateDailyAverage,
 })(ScholarCard);

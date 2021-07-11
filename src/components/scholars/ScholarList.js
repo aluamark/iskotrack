@@ -223,6 +223,7 @@ class ScholarList extends Component {
 
   refresh = () => {
     this.props.showReloadLoading();
+    this.props.fetchScholars();
     setTimeout(() => {
       this.props.hideLoader();
     }, 5000);
