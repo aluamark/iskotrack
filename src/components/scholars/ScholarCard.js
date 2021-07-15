@@ -186,15 +186,15 @@ class ScholarCard extends Component {
           <div className="card-header">
             <div className="row">
               <div className="col-sm">
-                <strong className="me-1">{this.props.nickname}</strong>
-                <small>{this.props.sharePercentage}% Share</small>
-              </div>
-              <div className="col-sm">
-                <small>Ronin: </small>
+                <strong>Ronin: </strong>
                 <small className="pe-2">{shortEthAdd}</small>
                 <CopyToClipboard text={scholar.client_id}>
                   <i style={{ cursor: "pointer" }} className="far fa-copy"></i>
                 </CopyToClipboard>
+              </div>
+              <div className="col-sm">
+                <strong className="me-1">{this.props.nickname}</strong>
+                <small>{this.props.sharePercentage}%</small>
               </div>
               <div className="col-sm">{this.renderAxies()}</div>
               <div className="col-sm">
