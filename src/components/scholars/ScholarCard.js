@@ -93,27 +93,21 @@ class ScholarCard extends Component {
     if (!this.props.scholarsAxies) {
       return (
         <small>
-          <img
-            className="mb-1"
-            src="https://storage.googleapis.com/assets.axieinfinity.com/axies/479876/axie/axie-full-transparent.png"
-            alt="slp"
-            height="30px"
-            width="40px"
-          />
-          <img
-            className="mb-1"
-            src="https://storage.googleapis.com/assets.axieinfinity.com/axies/418283/axie/axie-full-transparent.png"
-            alt="slp"
-            height="30px"
-            width="40px"
-          />
-          <img
-            className="mb-1"
-            src="https://storage.googleapis.com/assets.axieinfinity.com/axies/458219/axie/axie-full-transparent.png"
-            alt="slp"
-            height="30px"
-            width="40px"
-          />
+          <div
+            className="spinner-border spinner-border-sm ms-2 me-4"
+            role="status"
+            aria-hidden="true"
+          ></div>
+          <div
+            className="spinner-border spinner-border-sm me-4"
+            role="status"
+            aria-hidden="true"
+          ></div>
+          <div
+            className="spinner-border spinner-border-sm"
+            role="status"
+            aria-hidden="true"
+          ></div>
         </small>
       );
     } else {
@@ -186,7 +180,7 @@ class ScholarCard extends Component {
           <div className="card-header">
             <div className="row">
               <div className="col-sm">
-                <strong>Ronin: </strong>
+                <small>Ronin: </small>
                 <small className="pe-2">{shortEthAdd}</small>
                 <CopyToClipboard text={scholar.client_id}>
                   <i style={{ cursor: "pointer" }} className="far fa-copy"></i>
