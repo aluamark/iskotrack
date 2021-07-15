@@ -1,10 +1,10 @@
-const arenaReducer = (state = {}, action) => {
+const scholarAxiesReducer = (state = {}, action) => {
   switch (action.type) {
-    case "FETCH_ARENA":
+    case "FETCH_AXIES":
       return { ...state, [action.payload.ethAddress]: action.payload };
     default:
       return state;
   }
 };
 
-export default arenaReducer;
+export default scholarAxiesReducer;

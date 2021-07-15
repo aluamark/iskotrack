@@ -5,6 +5,7 @@ import {
   deleteScholar,
   deleteScholarData,
   updateDailyAverage,
+  fetchAxies,
 } from "../../actions";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -12,6 +13,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 class ScholarCard extends Component {
   componentDidMount() {
     this.props.fetchScholar(this.props.ethAddress);
+    this.props.fetchAxies(this.props.ethAddress);
   }
 
   getManagerTotalSlp(totalSlp) {
@@ -87,6 +89,62 @@ class ScholarCard extends Component {
     );
   }
 
+  renderAxies() {
+    if (!this.props.scholarsAxies) {
+      return (
+        <small>
+          <img
+            className="mb-1"
+            src="https://storage.googleapis.com/assets.axieinfinity.com/axies/479876/axie/axie-full-transparent.png"
+            alt="slp"
+            height="30px"
+            width="40px"
+          />
+          <img
+            className="mb-1"
+            src="https://storage.googleapis.com/assets.axieinfinity.com/axies/418283/axie/axie-full-transparent.png"
+            alt="slp"
+            height="30px"
+            width="40px"
+          />
+          <img
+            className="mb-1"
+            src="https://storage.googleapis.com/assets.axieinfinity.com/axies/458219/axie/axie-full-transparent.png"
+            alt="slp"
+            height="30px"
+            width="40px"
+          />
+        </small>
+      );
+    } else {
+      return (
+        <small>
+          <img
+            className="mb-1"
+            src={this.props.scholarsAxies.axie0}
+            alt="slp"
+            height="30px"
+            width="40px"
+          />
+          <img
+            className="mb-1"
+            src={this.props.scholarsAxies.axie1}
+            alt="slp"
+            height="30px"
+            width="40px"
+          />
+          <img
+            className="mb-1"
+            src={this.props.scholarsAxies.axie2}
+            alt="slp"
+            height="30px"
+            width="40px"
+          />
+        </small>
+      );
+    }
+  }
+
   renderCard() {
     if (!this.props.scholar) {
       return (
@@ -127,50 +185,51 @@ class ScholarCard extends Component {
         <div className="card my-2 text-dark">
           <div className="card-header">
             <div className="row">
-              <div className="col-sm-3">
+              <div className="col-sm">
                 <strong className="me-1">{this.props.nickname}</strong>
-                <small>{this.props.sharePercentage}%</small>
+                <small>{this.props.sharePercentage}% Share</small>
               </div>
-              <div className="col-sm-9">
+              <div className="col-sm">
                 <small>Ronin: </small>
                 <small className="pe-2">{shortEthAdd}</small>
                 <CopyToClipboard text={scholar.client_id}>
                   <i style={{ cursor: "pointer" }} className="far fa-copy"></i>
                 </CopyToClipboard>
               </div>
-              <div className="col-sm"></div>
-              <div className="col-sm"></div>
-              <div className="text-end">
-                <div
-                  className="btn-group-sm p-1 position-absolute top-0 end-0"
-                  role="group"
-                >
-                  <a
-                    href={`https://marketplace.axieinfinity.com/profile/${viewAxieAddrs}/axie`}
-                    target="_blank"
-                    rel="noreferrer"
+              <div className="col-sm">{this.renderAxies()}</div>
+              <div className="col-sm">
+                <div className="text-end">
+                  <div
+                    className="btn-group-sm p-1 position-absolute top-0 end-0"
+                    role="group"
                   >
-                    <span className="badge bg-secondary">View Axies</span>
-                  </a>
-                  <button
-                    type="button"
-                    className="btn ms-1"
-                    onClick={() => {
-                      this.props.fetchScholar(this.props.ethAddress);
-                    }}
-                  >
-                    <i className="fas fa-redo"></i>
-                  </button>
-                  <button
-                    type="button"
-                    className="btn"
-                    onClick={() => {
-                      this.props.deleteScholar(this.props.ethAddress);
-                      this.props.deleteScholarData(this.props.ethAddress);
-                    }}
-                  >
-                    <i className="fas fa-user-times text-danger"></i>
-                  </button>
+                    <a
+                      href={`https://marketplace.axieinfinity.com/profile/${viewAxieAddrs}/axie`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span className="badge bg-secondary">View Axies</span>
+                    </a>
+                    <button
+                      type="button"
+                      className="btn ms-1"
+                      onClick={() => {
+                        this.props.fetchScholar(this.props.ethAddress);
+                      }}
+                    >
+                      <i className="fas fa-redo"></i>
+                    </button>
+                    <button
+                      type="button"
+                      className="btn"
+                      onClick={() => {
+                        this.props.deleteScholar(this.props.ethAddress);
+                        this.props.deleteScholarData(this.props.ethAddress);
+                      }}
+                    >
+                      <i className="fas fa-user-times text-danger"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -315,6 +374,7 @@ const mapStateToProps = (state, ownProps) => {
     nickname: state.scholars[ownProps.ethAddress].nickname,
     slpPrice: state.slpData.slpPrice,
     email: state.auth.email,
+    scholarsAxies: state.scholarsAxies[ownProps.ethAddress],
   };
 };
 
@@ -323,4 +383,5 @@ export default connect(mapStateToProps, {
   deleteScholar,
   deleteScholarData,
   updateDailyAverage,
+  fetchAxies,
 })(ScholarCard);

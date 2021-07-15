@@ -13,6 +13,7 @@ import {
 import scholar from "../apis/scholar";
 import lunacian from "../apis/lunacian";
 import coingecko from "../apis/coingecko";
+import graphql from "../apis/graphql";
 
 import history from "../history";
 
@@ -110,6 +111,76 @@ export const fetchScholar = (id) => async (dispatch) => {
   });
 
   dispatch({ type: FETCH_SCHOLAR, payload: response.data });
+};
+
+export const fetchAxies = (ethAddress) => async (dispatch) => {
+  const response = await graphql.post(
+    "https://axieinfinity.com/graphql-server-v2/graphql",
+    {
+      query: `
+      query GetAxieBriefList($auctionType: AuctionType, $criteria: AxieSearchCriteria, $from: Int, $sort: SortBy, $size: Int, $owner: String) {
+  axies(auctionType: $auctionType, criteria: $criteria, from: $from, sort: $sort, size: $size, owner: $owner) {
+    total
+    results {
+      ...AxieBrief
+      __typename
+    }
+    __typename
+  }
+}
+
+fragment AxieBrief on Axie {
+  id
+  name
+  stage
+  class
+  breedCount
+  image
+  title
+  battleInfo {
+    banned
+    __typename
+  }
+  auction {
+    currentPrice
+    currentPriceUSD
+    __typename
+  }
+  parts {
+    id
+    name
+    class
+    type
+    specialGenes
+    __typename
+  }
+  __typename
+}
+
+`,
+      variables: {
+        auctionType: "All",
+        criteria: null,
+        from: 0,
+        owner: ethAddress,
+        size: 24,
+        sort: "IdAsc",
+      },
+    },
+    {
+      headers: {
+        "content-type": "application/json",
+      },
+    }
+  );
+
+  const axie0 = response.data.data.axies.results[0].image;
+  const axie1 = response.data.data.axies.results[1].image;
+  const axie2 = response.data.data.axies.results[2].image;
+
+  const axies = { ethAddress, axie0, axie1, axie2 };
+
+  dispatch({ type: "FETCH_AXIES", payload: axies });
 };
 
 export const updateDailyAverage =

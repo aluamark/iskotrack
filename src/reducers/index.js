@@ -5,14 +5,14 @@ import { reducer as formReducer } from "redux-form";
 import scholarReducer from "./scholarReducer";
 import scholarDataReducer from "./scholarDataReducer";
 import slpReducer from "./slpReducer";
-import arenaReducer from "./arenaReducer";
+import scholarAxiesReducer from "./scholarAxiesReducer";
 
 const appReducer = combineReducers({
   auth: authReducer,
   form: formReducer,
   scholars: scholarReducer,
   scholarsData: scholarDataReducer,
-  scholarsArenaData: arenaReducer,
+  scholarsAxies: scholarAxiesReducer,
   slpData: slpReducer,
 });
 
