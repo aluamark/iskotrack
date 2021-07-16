@@ -104,7 +104,9 @@ class ScholarCard extends Component {
             aria-hidden="true"
           ></div>
           <div
-            className="spinner-border spinner-border-sm"
+            className={`spinner-border spinner-border-sm ${
+              this.props.email === "aluamark@gmail.com" ? "me-3" : ""
+            } `}
             role="status"
             aria-hidden="true"
           ></div>
@@ -117,22 +119,22 @@ class ScholarCard extends Component {
             className="mb-1"
             src={this.props.scholarsAxies.axie0}
             alt="slp"
-            height="30px"
-            width="40px"
+            height={this.props.email === "aluamark@gmail.com" ? "50px" : "30px"}
+            width={this.props.email === "aluamark@gmail.com" ? "60px" : "40px"}
           />
           <img
             className="mb-1"
             src={this.props.scholarsAxies.axie1}
             alt="slp"
-            height="30px"
-            width="40px"
+            height={this.props.email === "aluamark@gmail.com" ? "50px" : "30px"}
+            width={this.props.email === "aluamark@gmail.com" ? "60px" : "40px"}
           />
           <img
             className="mb-1"
             src={this.props.scholarsAxies.axie2}
             alt="slp"
-            height="30px"
-            width="40px"
+            height={this.props.email === "aluamark@gmail.com" ? "50px" : "30px"}
+            width={this.props.email === "aluamark@gmail.com" ? "60px" : "40px"}
           />
         </small>
       );
@@ -167,7 +169,6 @@ class ScholarCard extends Component {
     const clientId = scholar.client_id;
     const first4 = clientId.substring(0, 6);
     const last4 = clientId.slice(-4);
-
     const shortEthAdd = `${first4}...${last4}`;
 
     const viewAxieAddrs = clientId.replace("0x", "ronin:");
@@ -282,11 +283,11 @@ class ScholarCard extends Component {
         <div className="card my-2 text-dark">
           <div className="card-header">
             <div className="row">
-              <div className="col-sm-3">
+              <div className="col-sm">
                 <strong className="me-1">{this.props.nickname}</strong>
                 <small>{this.props.sharePercentage}%</small>
               </div>
-              <div className="col-sm-9">
+              <div className="col-sm">
                 <small>Ronin: </small>
                 <small className="pe-2">{shortEthAdd}</small>
                 <CopyToClipboard text={scholar.client_id}>
@@ -294,38 +295,42 @@ class ScholarCard extends Component {
                 </CopyToClipboard>
               </div>
               <div className="col-sm"></div>
-              <div className="col-sm"></div>
-              <div className="text-end">
-                <div
-                  className="btn-group-sm p-1 position-absolute top-0 end-0"
-                  role="group"
-                >
-                  <a
-                    href={`https://marketplace.axieinfinity.com/profile/${viewAxieAddrs}/axie`}
-                    target="_blank"
-                    rel="noreferrer"
+              <div className="col-sm">
+                <div className="text-end">
+                  <div
+                    className="btn-group-sm p-1 position-absolute top-0 end-0"
+                    role="group"
                   >
-                    <span className="badge bg-secondary">View Axies</span>
-                  </a>
-                  <button
-                    type="button"
-                    className="btn ms-1"
-                    onClick={() => {
-                      this.props.fetchScholar(this.props.ethAddress);
-                    }}
-                  >
-                    <i className="fas fa-redo"></i>
-                  </button>
-                  <button
-                    type="button"
-                    className="btn"
-                    onClick={() => {
-                      this.props.deleteScholar(this.props.ethAddress);
-                      this.props.deleteScholarData(this.props.ethAddress);
-                    }}
-                  >
-                    <i className="fas fa-user-times text-danger"></i>
-                  </button>
+                    {this.renderAxies()}
+
+                    {/* REMOVE COMMENT TO OPEN SCHOLAR OPTIONS */}
+                    {/* <a
+                      href={`https://marketplace.axieinfinity.com/profile/${viewAxieAddrs}/axie`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span className="badge bg-secondary">View Axies</span>
+                    </a>
+                    <button
+                      type="button"
+                      className="btn ms-1"
+                      onClick={() => {
+                        this.props.fetchScholar(this.props.ethAddress);
+                      }}
+                    >
+                      <i className="fas fa-redo"></i>
+                    </button>
+                    <button
+                      type="button"
+                      className="btn"
+                      onClick={() => {
+                        this.props.deleteScholar(this.props.ethAddress);
+                        this.props.deleteScholarData(this.props.ethAddress);
+                      }}
+                    >
+                      <i className="fas fa-user-times text-danger"></i>
+                    </button> */}
+                  </div>
                 </div>
               </div>
             </div>
