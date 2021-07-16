@@ -119,22 +119,22 @@ class ScholarCard extends Component {
             className="mb-1"
             src={this.props.scholarsAxies.axie0}
             alt="slp"
-            height={this.props.email === "aluamark@gmail.com" ? "50px" : "30px"}
-            width={this.props.email === "aluamark@gmail.com" ? "60px" : "40px"}
+            height={this.props.email === "aluamark@gmail.com" ? "40px" : "30px"}
+            width={this.props.email === "aluamark@gmail.com" ? "50px" : "40px"}
           />
           <img
             className="mb-1"
             src={this.props.scholarsAxies.axie1}
             alt="slp"
-            height={this.props.email === "aluamark@gmail.com" ? "50px" : "30px"}
-            width={this.props.email === "aluamark@gmail.com" ? "60px" : "40px"}
+            height={this.props.email === "aluamark@gmail.com" ? "40px" : "30px"}
+            width={this.props.email === "aluamark@gmail.com" ? "50px" : "40px"}
           />
           <img
             className="mb-1"
             src={this.props.scholarsAxies.axie2}
             alt="slp"
-            height={this.props.email === "aluamark@gmail.com" ? "50px" : "30px"}
-            width={this.props.email === "aluamark@gmail.com" ? "60px" : "40px"}
+            height={this.props.email === "aluamark@gmail.com" ? "40px" : "30px"}
+            width={this.props.email === "aluamark@gmail.com" ? "50px" : "40px"}
           />
         </small>
       );
