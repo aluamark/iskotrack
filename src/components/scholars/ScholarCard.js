@@ -210,6 +210,7 @@ class ScholarCard extends Component {
                       className="btn ms-1"
                       onClick={() => {
                         this.props.fetchScholar(this.props.ethAddress);
+                        this.props.fetchAxies(this.props.ethAddress);
                       }}
                     >
                       <i className="fas fa-redo"></i>
