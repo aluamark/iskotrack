@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {
   fetchScholars,
   fetchScholar,
+  fetchAxies,
   fetchSlpPrice,
   fetchAxsPrice,
   showReloadLoading,
@@ -229,6 +230,7 @@ class ScholarList extends Component {
     }, 5000);
     return this.props.scholars.forEach((scholar) => {
       this.props.fetchScholar(scholar.ethAddress);
+      this.props.fetchAxies(scholar.ethAddress);
     });
   };
 
@@ -344,6 +346,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   fetchScholars,
   fetchScholar,
+  fetchAxies,
   fetchSlpPrice,
   fetchAxsPrice,
   showReloadLoading,
