@@ -61,7 +61,7 @@ class ScholarCard extends Component {
 
     return (
       <div className="col-sm">
-        Scholar{" "}
+        {this.props.email === "aluamark@gmail.com" ? "Total" : "Scholar"}{" "}
         <img
           className="mb-1"
           src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
@@ -84,7 +84,8 @@ class ScholarCard extends Component {
 
     return (
       <div className="col-sm">
-        Scholar PHP: <b className="text-success">₱{formatted}</b>
+        {this.props.email === "aluamark@gmail.com" ? "Total" : "Scholar"} PHP:{" "}
+        <b className="text-success">₱{formatted}</b>
       </div>
     );
   }
@@ -189,7 +190,6 @@ class ScholarCard extends Component {
               </div>
               <div className="col-sm">
                 <strong className="me-1">{this.props.nickname}</strong>
-                <small>{this.props.sharePercentage}%</small>
               </div>
               <div className="col-sm">{this.renderAxies()}</div>
               <div className="col-sm">
@@ -233,17 +233,6 @@ class ScholarCard extends Component {
           <div className="card-body small">
             <div className="row">
               <div className="col-sm">
-                Total{" "}
-                <img
-                  className="mb-1"
-                  src="https://assets.coingecko.com/coins/images/10366/large/SLP.png?1578640057"
-                  alt="slp"
-                  height="15px"
-                  width="15px"
-                />
-                : <b>{new Intl.NumberFormat().format(scholar.total)}</b>
-              </div>
-              <div className="col-sm">
                 {sinceLastClaim > 14 ? "Claimable" : "Unclaimable"}{" "}
                 <img
                   className="mb-1"
@@ -252,7 +241,10 @@ class ScholarCard extends Component {
                   height="15px"
                   width="15px"
                 />
-                : {new Intl.NumberFormat().format(unclaimed)}
+                : <b>{new Intl.NumberFormat().format(unclaimed)}</b>
+              </div>
+              <div className="col-sm">
+                Share Percentage: {this.props.sharePercentage}%
               </div>
               <div className="col-sm">
                 Daily Average{" "}
