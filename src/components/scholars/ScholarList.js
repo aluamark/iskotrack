@@ -68,6 +68,7 @@ class ScholarList extends Component {
       let totalScholarPhp = 0;
       let totalManagerSlp = 0;
       let totalManagerPhp = 0;
+
       this.props.scholarsData.forEach((scholar) => {
         const unclaimed = scholar.total - scholar.claimable_total;
 
@@ -79,7 +80,7 @@ class ScholarList extends Component {
         });
 
         const scholarShare = filteredScho[0].sharePercentage;
-        const scholarSlp = (scholarShare / 100) * scholar.total;
+        const scholarSlp = (scholarShare / 100) * unclaimed;
 
         totalScholarSlp = Math.round(totalScholarSlp + scholarSlp);
         totalScholarPhp = Math.round(totalScholarSlp * this.props.slpPrice);
