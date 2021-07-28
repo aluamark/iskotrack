@@ -176,7 +176,10 @@ class ScholarCard extends Component {
 
     this.props.updateDailyAverage(clientId, dailyAverage);
 
-    if (this.props.email !== "aluamark@gmail.com") {
+    if (
+      this.props.email !== "aluamark@gmail.com" &&
+      this.props.email !== "bambeescholar@gmail.com"
+    ) {
       return (
         <div className="card my-2 text-dark">
           <div className="card-header">

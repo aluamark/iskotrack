@@ -61,7 +61,10 @@ class ScholarList extends Component {
   };
 
   renderTotal() {
-    if (this.props.email !== "aluamark@gmail.com") {
+    if (
+      this.props.email !== "aluamark@gmail.com" &&
+      this.props.email !== "bambeescholar@gmail.com"
+    ) {
       let totalSlp = 0;
       let totalPhp = 0;
       let totalScholarSlp = 0;
