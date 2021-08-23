@@ -65,7 +65,7 @@ class Leaderboard extends Component {
             role="status"
             aria-hidden="true"
           ></div>
-          <img src="/riptermi.gif" alt="rip-termi"></img>
+          <img src="/riptermi.gif" width="100%" alt="rip-termi"></img>
         </div>
       );
     } else {
