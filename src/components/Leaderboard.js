@@ -62,7 +62,9 @@ class Leaderboard extends Component {
             <h4 className="text-warning text-center my-3">
               Leaderboard
               <br></br>
-              <small className="text-danger">CRJ x Smash x Bambee</small>
+              <small className="text-danger">
+                CRJ x Smash x Bambee x NoSleep
+              </small>
             </h4>
           </div>
         </div>
