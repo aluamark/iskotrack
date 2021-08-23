@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
+  fetchAllScholars,
   fetchScholars,
   fetchScholar,
   fetchAxies,
@@ -20,6 +21,7 @@ import history from "../../history";
 class ScholarList extends Component {
   componentDidMount() {
     if (this.props.isSignedIn) {
+      this.props.fetchAllScholars();
       this.props.fetchScholars();
     } else {
       history.push("/");
@@ -31,7 +33,17 @@ class ScholarList extends Component {
 
     setInterval(this.props.fetchAxsPrice, 180000);
     setInterval(this.props.fetchSlpPrice, 180000);
+
+    this.fetchAllScholarsLeaderboard();
   }
+
+  fetchAllScholarsLeaderboard = () => {
+    if (this.props.allScholars) {
+      this.props.allScholars.forEach((scholar) => {
+        this.props.fetchArena(scholar.ethAddress);
+      });
+    }
+  };
 
   renderList = () => {
     const scholarCards = this.props.scholars.map((scholar) => {
@@ -335,6 +347,7 @@ const mapStateToProps = (state) => {
     isSignedIn: state.auth.isSignedIn,
     userId: state.auth.userId,
     email: state.auth.email,
+    allScholars: Object.values(state.allScholars),
     scholars: Object.values(state.scholars),
     scholarsData: Object.values(state.scholarsData),
     slpPrice: state.slpData.slpPrice,
@@ -345,6 +358,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+  fetchAllScholars,
   fetchScholars,
   fetchScholar,
   fetchAxies,

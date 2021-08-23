@@ -6,7 +6,6 @@ import {
   deleteScholarData,
   updateDailyAverage,
   fetchAxies,
-  fetchArena,
 } from "../../actions";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -15,7 +14,6 @@ class ScholarCard extends Component {
   componentDidMount() {
     this.props.fetchScholar(this.props.ethAddress);
     this.props.fetchAxies(this.props.ethAddress);
-    this.props.fetchArena(this.props.nickname, this.props.ethAddress);
   }
 
   getManagerTotalSlp(totalSlp) {
@@ -215,7 +213,6 @@ class ScholarCard extends Component {
               </div>
               <div className="col-sm">
                 <strong className="me-1">{this.props.nickname}</strong>
-                {this.renderArena()}
               </div>
               <div className="col-sm">{this.renderAxies()}</div>
               <div className="col-sm">
@@ -393,7 +390,6 @@ const mapStateToProps = (state, ownProps) => {
     slpPrice: state.slpData.slpPrice,
     email: state.auth.email,
     scholarsAxies: state.scholarsAxies[ownProps.ethAddress],
-    elo: state.scholarArena[ownProps.ethAddress],
   };
 };
 
@@ -403,5 +399,4 @@ export default connect(mapStateToProps, {
   deleteScholarData,
   updateDailyAverage,
   fetchAxies,
-  fetchArena,
 })(ScholarCard);

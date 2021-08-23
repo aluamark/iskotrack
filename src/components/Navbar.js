@@ -26,9 +26,9 @@ class Navbar extends Component {
         );
       }
       return (
-        <div className="container">
+        <div>
           <div className="row">
-            <div className="col-6">
+            <div className="col-8">
               <button
                 className="btn btn-warning btn-sm mt-3 me-1 float-start"
                 onClick={() => {
@@ -46,7 +46,7 @@ class Navbar extends Component {
                 Leaderboard 🔥
               </button>
             </div>
-            <div className="col-6">
+            <div className="col-4">
               <button
                 className="btn btn-danger btn-sm mt-3 float-end"
                 onClick={() => {

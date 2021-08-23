@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class Leaderboard extends Component {
-  componentDidMount() {
-    if (!this.props.leaderboard) {
-      console.log(this.props.leaderboard);
-    }
-  }
-
   renderLeaderboard() {
     let myData = Object.keys(this.props.leaderboard).map((key) => {
       return this.props.leaderboard[key];
@@ -15,13 +9,9 @@ class Leaderboard extends Component {
 
     let counter = 0;
 
-    console.log(myData);
-
     myData.sort(function (a, b) {
       return b.elo - a.elo;
     });
-
-    console.log(myData);
 
     const rows = myData.map((scholar) => {
       counter++;
@@ -69,7 +59,11 @@ class Leaderboard extends Component {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-auto">
-            <h4 className="text-warning my-3">Leaderboard</h4>
+            <h4 className="text-warning text-center my-3">
+              Leaderboard
+              <br></br>
+              <small className="text-danger">CRJ x Smash x Bambee</small>
+            </h4>
           </div>
         </div>
         <div className="row justify-content-center">

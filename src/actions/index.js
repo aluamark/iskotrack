@@ -91,6 +91,18 @@ export const signOut = () => async (dispatch) => {
   history.push(`/`);
 };
 
+export const fetchAllScholars = () => async (dispatch, getState) => {
+  const token = localStorage.getItem("Token");
+  const response = await scholar.get("/scholars/leaderboard", {
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  dispatch({ type: "FETCH_ALL_SCHOLARS", payload: response.data });
+};
+
 export const fetchScholars = () => async (dispatch, getState) => {
   const token = localStorage.getItem("Token");
   const { userId } = getState().auth;
@@ -186,10 +198,11 @@ fragment AxieBrief on Axie {
   dispatch({ type: "FETCH_AXIES", payload: axies });
 };
 
-export const fetchArena = (nickname, ethAddress) => async (dispatch) => {
+export const fetchArena = (ethAddress) => async (dispatch) => {
   const response = await proxy.get(`/${ethAddress}`);
 
   const elo = response.data.stats.elo;
+  const nickname = response.data.stats.name;
 
   dispatch({ type: "FETCH_ARENA", payload: { ethAddress, nickname, elo } });
 };
