@@ -2,7 +2,23 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class Leaderboard extends Component {
+  renderAllScholarCounter() {
+    let totalScholars = 0;
+
+    this.props.allScholars.forEach((scholar) => {
+      totalScholars++;
+    });
+
+    return <div>Fetching {totalScholars} trainers steady ka lang jan..</div>;
+  }
+
   renderLeaderboard() {
+    let totalScholars = 0;
+
+    this.props.allScholars.forEach(() => {
+      totalScholars++;
+    });
+
     let myData = Object.keys(this.props.leaderboard).map((key) => {
       return this.props.leaderboard[key];
     });
@@ -25,20 +41,34 @@ class Leaderboard extends Component {
       );
     });
 
-    return (
-      <div className="card bg-dark mb-3">
-        <table className="table text-white">
-          <thead>
-            <tr>
-              <th className="table-secondary">Rank</th>
-              <th className="table-secondary">Name</th>
-              <th className="table-secondary">MMR</th>
-            </tr>
-          </thead>
-          <tbody>{rows}</tbody>
-        </table>
-      </div>
-    );
+    if (counter !== totalScholars) {
+      return (
+        <div className="text-center mt-1">
+          <div>Loading leaderboard data...</div>
+          {this.renderAllScholarCounter()}
+          <div
+            className="spinner-border spinner-border m-3"
+            role="status"
+            aria-hidden="true"
+          ></div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="card bg-dark mb-3">
+          <table className="table text-white">
+            <thead>
+              <tr>
+                <th className="table-secondary">Rank</th>
+                <th className="table-secondary">Name</th>
+                <th className="table-secondary">MMR</th>
+              </tr>
+            </thead>
+            <tbody>{rows}</tbody>
+          </table>
+        </div>
+      );
+    }
   }
 
   render() {
@@ -60,7 +90,7 @@ class Leaderboard extends Component {
         <div className="row justify-content-center">
           <div className="col-auto">
             <h4 className="text-warning text-center my-3">
-              Leaderboard
+              Leaderboard 🔥
               <br></br>
               <small className="text-danger">
                 CRJ x Smash x Bambee x NoSleep
@@ -77,7 +107,10 @@ class Leaderboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { leaderboard: state.scholarArena };
+  return {
+    leaderboard: state.scholarArena,
+    allScholars: Object.values(state.allScholars),
+  };
 };
 
 export default connect(mapStateToProps)(Leaderboard);

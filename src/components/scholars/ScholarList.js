@@ -38,11 +38,9 @@ class ScholarList extends Component {
   }
 
   fetchAllScholarsLeaderboard = () => {
-    if (this.props.allScholars) {
-      this.props.allScholars.forEach((scholar) => {
-        this.props.fetchArena(scholar.ethAddress);
-      });
-    }
+    this.props.allScholars.forEach((scholar) => {
+      this.props.fetchArena(scholar.ethAddress);
+    });
   };
 
   renderList = () => {
