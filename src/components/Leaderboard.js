@@ -9,7 +9,7 @@ class Leaderboard extends Component {
       totalScholars++;
     });
 
-    return <div>Fetching {totalScholars} trainers steady ka lang jan..</div>;
+    return <div>Fetching {totalScholars} trainers steady ka lang..</div>;
   }
 
   renderLeaderboard() {
