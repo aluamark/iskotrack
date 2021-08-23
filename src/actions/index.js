@@ -14,6 +14,7 @@ import scholar from "../apis/scholar";
 import lunacian from "../apis/lunacian";
 import coingecko from "../apis/coingecko";
 import graphql from "../apis/graphql";
+import proxy from "../apis/proxy";
 
 import history from "../history";
 
@@ -34,6 +35,8 @@ export const hideLoader = () => (dispatch) => {
     type: "HIDE_LOADER",
   });
 };
+
+export const checkPendingRequests = () => (dispatch) => {};
 
 export const signIn = (formValues) => async (dispatch) => {
   try {
@@ -181,6 +184,14 @@ fragment AxieBrief on Axie {
   const axies = { ethAddress, axie0, axie1, axie2 };
 
   dispatch({ type: "FETCH_AXIES", payload: axies });
+};
+
+export const fetchArena = (nickname, ethAddress) => async (dispatch) => {
+  const response = await proxy.get(`/${ethAddress}`);
+
+  const elo = response.data.stats.elo;
+
+  dispatch({ type: "FETCH_ARENA", payload: { ethAddress, nickname, elo } });
 };
 
 export const updateDailyAverage =

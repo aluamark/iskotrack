@@ -8,6 +8,7 @@ import {
   fetchAxsPrice,
   showReloadLoading,
   hideLoader,
+  fetchArena,
 } from "../../actions";
 
 import ScholarCard from "./ScholarCard";
@@ -17,10 +18,6 @@ import ScholarEmpty from "./ScholarEmpty";
 import history from "../../history";
 
 class ScholarList extends Component {
-  state = {
-    scholarCount: 0,
-  };
-
   componentDidMount() {
     if (this.props.isSignedIn) {
       this.props.fetchScholars();
@@ -313,7 +310,7 @@ class ScholarList extends Component {
           <div className="container">
             <div className="row mb-1">
               <div className="col-7">
-                <h4 className="col-sm text-warning">
+                <h4 className="text-warning">
                   Scholars: {this.renderListTotal()}
                 </h4>
               </div>
@@ -355,4 +352,5 @@ export default connect(mapStateToProps, {
   fetchAxsPrice,
   showReloadLoading,
   hideLoader,
+  fetchArena,
 })(ScholarList);

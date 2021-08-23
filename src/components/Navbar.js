@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { signOut, showLoader } from "../actions";
 
 import LoginForm from "./LoginForm";
+import history from "../history";
 
 class Navbar extends Component {
   renderNavbar() {
@@ -25,19 +26,39 @@ class Navbar extends Component {
         );
       }
       return (
-        <nav className="nav nav-masthead justify-content-center float-md-end pt-3 ">
-          <div className="nav-item px-3">
-            <button
-              className="btn btn-danger btn-sm"
-              onClick={() => {
-                this.props.signOut();
-                this.props.showLoader();
-              }}
-            >
-              <i className="fas fa-sign-out-alt"></i> Sign Out
-            </button>
+        <div className="container">
+          <div className="row">
+            <div className="col-6">
+              <button
+                className="btn btn-warning btn-sm mt-3 me-1 float-start"
+                onClick={() => {
+                  history.push("/scholars");
+                }}
+              >
+                Scholars 🎓
+              </button>
+              <button
+                className="btn btn-warning btn-sm mt-3"
+                onClick={() => {
+                  history.push("/leaderboard");
+                }}
+              >
+                Leaderboard 🔥
+              </button>
+            </div>
+            <div className="col-6">
+              <button
+                className="btn btn-danger btn-sm mt-3 float-end"
+                onClick={() => {
+                  this.props.signOut();
+                  this.props.showLoader();
+                }}
+              >
+                <i className="fas fa-sign-out-alt"></i> Sign Out
+              </button>
+            </div>
           </div>
-        </nav>
+        </div>
       );
     } else {
       return (
@@ -62,8 +83,8 @@ class Navbar extends Component {
               height="50px"
             />
           </Link>
-          {this.renderNavbar()}
         </div>
+        <div className="container">{this.renderNavbar()}</div>
       </div>
     );
   }

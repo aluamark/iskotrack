@@ -1,9 +1,10 @@
 const INITIAL_STATE = {
   isSignedIn: null,
   userId: null,
+  email: null,
   loading: false,
   reloadLoading: false,
-  email: null,
+  leaderboardLoading: false,
 };
 
 const authReducer = (state = INITIAL_STATE, action) => {
@@ -23,6 +24,8 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return { ...state, loading: false, reloadLoading: false };
     case "SIGN_OUT":
       return { ...state, isSignedIn: false, userId: null };
+    case "SHOW_LEADERBOARD_LOADING":
+      return { ...state, leaderboardLoading: true };
     default:
       return state;
   }

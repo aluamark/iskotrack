@@ -6,6 +6,7 @@ import scholarReducer from "./scholarReducer";
 import scholarDataReducer from "./scholarDataReducer";
 import slpReducer from "./slpReducer";
 import scholarAxiesReducer from "./scholarAxiesReducer";
+import scholarArenaReducer from "./scholarArenaReducer";
 
 const appReducer = combineReducers({
   auth: authReducer,
@@ -13,6 +14,7 @@ const appReducer = combineReducers({
   scholars: scholarReducer,
   scholarsData: scholarDataReducer,
   scholarsAxies: scholarAxiesReducer,
+  scholarArena: scholarArenaReducer,
   slpData: slpReducer,
 });
 
