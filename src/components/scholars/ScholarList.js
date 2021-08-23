@@ -33,15 +33,7 @@ class ScholarList extends Component {
 
     setInterval(this.props.fetchAxsPrice, 180000);
     setInterval(this.props.fetchSlpPrice, 180000);
-
-    this.fetchAllScholarsLeaderboard();
   }
-
-  fetchAllScholarsLeaderboard = () => {
-    this.props.allScholars.forEach((scholar) => {
-      this.props.fetchArena(scholar.ethAddress);
-    });
-  };
 
   renderList = () => {
     const scholarCards = this.props.scholars.map((scholar) => {
@@ -346,6 +338,7 @@ const mapStateToProps = (state) => {
     userId: state.auth.userId,
     email: state.auth.email,
     allScholars: Object.values(state.allScholars),
+    allScholarsArena: Object.values(state.scholarArena),
     scholars: Object.values(state.scholars),
     scholarsData: Object.values(state.scholarsData),
     slpPrice: state.slpData.slpPrice,

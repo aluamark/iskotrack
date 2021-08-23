@@ -1,15 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { fetchArena } from "../actions";
+
 class Leaderboard extends Component {
+  componentDidMount() {
+    this.fetchAllScholarsLeaderboard();
+  }
+
+  fetchAllScholarsLeaderboard = () => {
+    if (!this.props.allScholarsArena) {
+      this.props.allScholars.forEach((scholar) => {
+        this.props.fetchArena(scholar.ethAddress);
+      });
+    }
+  };
+
   renderAllScholarCounter() {
     let totalScholars = 0;
 
-    this.props.allScholars.forEach((scholar) => {
+    this.props.allScholars.forEach(() => {
       totalScholars++;
     });
 
-    return <div>Fetching {totalScholars} trainers steady ka lang..</div>;
+    return <div>Fetching {totalScholars} accounts...</div>;
   }
 
   renderLeaderboard() {
@@ -51,6 +65,7 @@ class Leaderboard extends Component {
             role="status"
             aria-hidden="true"
           ></div>
+          <img src="/riptermi.gif" alt="rip-termi"></img>
         </div>
       );
     } else {
@@ -113,4 +128,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Leaderboard);
+export default connect(mapStateToProps, { fetchArena })(Leaderboard);
