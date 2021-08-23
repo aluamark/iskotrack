@@ -194,7 +194,7 @@ class ScholarCard extends Component {
 
     const viewAxieAddrs = clientId.replace("0x", "ronin:");
 
-    // this.props.updateDailyAverage(clientId, dailyAverage);
+    this.props.updateDailyAverage(clientId, dailyAverage);
 
     if (
       this.props.email !== "aluamark@gmail.com" &&
