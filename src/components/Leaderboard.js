@@ -9,22 +9,24 @@ class Leaderboard extends Component {
   }
 
   fetchAllScholarsLeaderboard = () => {
-    if (!this.props.allScholarsArena) {
-      this.props.allScholars.forEach((scholar) => {
-        this.props.fetchArena(scholar.ethAddress);
-      });
-    }
-  };
-
-  renderAllScholarCounter() {
     let totalScholars = 0;
 
-    this.props.allScholars.forEach(() => {
+    const scholarArena = Object.values(this.props.leaderboard);
+
+    console.log(scholarArena);
+
+    scholarArena.forEach(() => {
       totalScholars++;
     });
 
-    return <div>Fetching {totalScholars} accounts...</div>;
-  }
+    console.log(totalScholars);
+
+    if (totalScholars === 0) {
+      this.props.allScholars.forEach((scholar) => {
+        this.props.fetchArena(scholar.nickname, scholar.ethAddress);
+      });
+    }
+  };
 
   renderLeaderboard() {
     let totalScholars = 0;
@@ -59,12 +61,15 @@ class Leaderboard extends Component {
       return (
         <div className="text-center mt-1">
           <div>Loading leaderboard data...</div>
-          {this.renderAllScholarCounter()}
+          <div>
+            Fetching {counter}/{totalScholars}...
+          </div>
           <div
             className="spinner-border spinner-border m-3"
             role="status"
             aria-hidden="true"
           ></div>
+          <div className="mb-3">MMR updates every 4 hrs.</div>
           <img src="/riptermi.gif" width="100%" alt="rip-termi"></img>
         </div>
       );

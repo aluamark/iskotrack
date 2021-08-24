@@ -26,7 +26,7 @@ class Navbar extends Component {
         );
       }
       return (
-        <div>
+        <div className="container">
           <div className="row">
             <div className="col-8">
               <button
@@ -38,7 +38,7 @@ class Navbar extends Component {
                 Scholars 🎓
               </button>
               <button
-                className="btn btn-warning btn-sm mt-3"
+                className="btn btn-warning btn-sm mt-3 disabled"
                 onClick={() => {
                   history.push("/leaderboard");
                 }}

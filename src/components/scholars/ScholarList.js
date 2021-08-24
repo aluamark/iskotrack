@@ -310,7 +310,7 @@ class ScholarList extends Component {
         <div className="container">
           {this.renderScholarForm()}
           <div className="container">
-            <div className="row mb-1">
+            <div className="row mb-2">
               <div className="col-7">
                 <h4 className="text-warning">
                   Scholars: {this.renderListTotal()}
