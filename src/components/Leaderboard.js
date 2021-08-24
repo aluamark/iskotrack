@@ -23,7 +23,7 @@ class Leaderboard extends Component {
 
     if (totalScholars === 0) {
       this.props.allScholars.forEach((scholar) => {
-        this.props.fetchArena(scholar.nickname, scholar.ethAddress);
+        this.props.fetchArena(scholar.ethAddress);
       });
     }
   };
