@@ -117,13 +117,7 @@ export const fetchScholars = () => async (dispatch, getState) => {
 };
 
 export const fetchScholar = (id) => async (dispatch) => {
-  const token = localStorage.getItem("Token");
-  const response = await lunacian.get(`/${id}/items/1`, {
-    headers: {
-      "content-type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await lunacian.get(`/${id}/items/1`);
 
   dispatch({ type: FETCH_SCHOLAR, payload: response.data });
 };

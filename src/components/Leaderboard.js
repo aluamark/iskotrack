@@ -13,13 +13,9 @@ class Leaderboard extends Component {
 
     const scholarArena = Object.values(this.props.leaderboard);
 
-    console.log(scholarArena);
-
     scholarArena.forEach(() => {
       totalScholars++;
     });
-
-    console.log(totalScholars);
 
     if (totalScholars === 0) {
       this.props.allScholars.forEach((scholar) => {
