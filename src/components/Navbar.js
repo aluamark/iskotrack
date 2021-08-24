@@ -38,7 +38,7 @@ class Navbar extends Component {
                 Scholars 🎓
               </button>
               <button
-                className="btn btn-warning btn-sm mt-3 disabled"
+                className="btn btn-warning btn-sm mt-3"
                 onClick={() => {
                   history.push("/leaderboard");
                 }}
