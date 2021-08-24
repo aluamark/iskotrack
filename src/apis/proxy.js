@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://axiesworld.firebaseapp.com",
+  baseURL: "https://axie-proxy.secret-shop.buzz/_basicStats",
 });
