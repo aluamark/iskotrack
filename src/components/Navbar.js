@@ -11,54 +11,52 @@ class Navbar extends Component {
     if (this.props.isSignedIn) {
       if (this.props.loading) {
         return (
-          <nav className="nav nav-masthead justify-content-center float-md-end pt-3 ">
-            <div className="nav-item px-3">
-              <button className="btn btn-danger btn-sm" type="button" disabled>
-                <span
-                  className="spinner-border spinner-border-sm"
-                  role="status"
-                  aria-hidden="true"
-                ></span>{" "}
-                Sign Out
-              </button>
-            </div>
-          </nav>
+          <li className="nav-item mt-4">
+            <button className="btn btn-danger btn-sm" type="button" disabled>
+              <span
+                className="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>{" "}
+              Sign Out
+            </button>
+          </li>
         );
       }
       return (
-        <div className="container">
-          <div className="row">
-            <div className="col-8">
-              <button
-                className="btn btn-warning btn-sm mt-3 me-1 float-start"
-                onClick={() => {
-                  history.push("/scholars");
-                }}
-              >
-                Scholars 🎓
-              </button>
-              <button
-                className="btn btn-warning btn-sm mt-3"
-                onClick={() => {
-                  history.push("/leaderboard");
-                }}
-              >
-                Leaderboard 🔥
-              </button>
-            </div>
-            <div className="col-4">
-              <button
-                className="btn btn-danger btn-sm mt-3 float-end"
-                onClick={() => {
-                  this.props.signOut();
-                  this.props.showLoader();
-                }}
-              >
-                <i className="fas fa-sign-out-alt"></i> Sign Out
-              </button>
-            </div>
-          </div>
-        </div>
+        <ul className="nav justify-content-center mt-4">
+          <li className="nav-item">
+            <button
+              className="col-sm btn btn-warning btn-sm me-1 float-start"
+              onClick={() => {
+                history.push("/scholars");
+              }}
+            >
+              Scholars 🎓
+            </button>
+          </li>
+          <li className="nav-item">
+            <button
+              className="col-sm btn btn-warning btn-sm me-1"
+              onClick={() => {
+                history.push("/leaderboard");
+              }}
+            >
+              Leaderboard 🔥
+            </button>
+          </li>
+          <li className="nav-item">
+            <button
+              className="btn btn-danger btn-sm float-end"
+              onClick={() => {
+                this.props.signOut();
+                this.props.showLoader();
+              }}
+            >
+              <i className="fas fa-sign-out-alt"></i> Sign Out
+            </button>
+          </li>
+        </ul>
       );
     } else {
       return (
@@ -69,9 +67,11 @@ class Navbar extends Component {
     }
   }
 
-  render() {
-    return (
-      <div className="mb-auto flex-column mt-3">
+  renderAxieLogo() {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth < 720) {
+      return (
         <div className="text-center">
           <Link
             className="float-md-start p-2 mx-3"
@@ -84,7 +84,15 @@ class Navbar extends Component {
             />
           </Link>
         </div>
-        <div className="container">{this.renderNavbar()}</div>
+      );
+    }
+  }
+
+  render() {
+    return (
+      <div className="mb-auto flex-column mt-3">
+        {this.renderAxieLogo()}
+        <ul className="nav justify-content-center">{this.renderNavbar()}</ul>
       </div>
     );
   }

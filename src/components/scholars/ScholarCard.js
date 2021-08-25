@@ -205,7 +205,6 @@ class ScholarCard extends Component {
           <div className="card-header">
             <div className="row">
               <div className="col-sm">
-                <small>Ronin: </small>
                 <small className="pe-2">{shortEthAdd}</small>
                 <CopyToClipboard text={scholar.client_id}>
                   <i style={{ cursor: "pointer" }} className="far fa-copy"></i>
@@ -304,7 +303,6 @@ class ScholarCard extends Component {
                 <small>{this.props.sharePercentage}%</small>
               </div>
               <div className="col-sm">
-                <small>Ronin: </small>
                 <small className="pe-2">{shortEthAdd}</small>
                 <CopyToClipboard text={scholar.client_id}>
                   <i style={{ cursor: "pointer" }} className="far fa-copy"></i>

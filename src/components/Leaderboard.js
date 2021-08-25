@@ -47,7 +47,7 @@ class Leaderboard extends Component {
       return (
         <tr key={counter}>
           <th>{counter}</th>
-          <td>{scholar.nickname}</td>
+          <td>{scholar.ign}</td>
           <td>{scholar.elo}</td>
         </tr>
       );

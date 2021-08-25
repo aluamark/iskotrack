@@ -194,11 +194,10 @@ fragment AxieBrief on Axie {
 
 export const fetchArena = (ethAddress) => async (dispatch) => {
   const response = await proxy.get(`/${ethAddress}`);
+  const elo = response.data.mmr;
+  const ign = response.data.ign;
 
-  const elo = response.data.stats.elo;
-  const nickname = response.data.stats.name;
-
-  dispatch({ type: "FETCH_ARENA", payload: { ethAddress, nickname, elo } });
+  dispatch({ type: "FETCH_ARENA", payload: { ethAddress, ign, elo } });
 };
 
 export const updateDailyAverage =
