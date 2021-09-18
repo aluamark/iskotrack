@@ -25,12 +25,6 @@ class Leaderboard extends Component {
   };
 
   renderLeaderboard() {
-    let totalScholars = 0;
-
-    this.props.allScholars.forEach(() => {
-      totalScholars++;
-    });
-
     let myData = Object.keys(this.props.leaderboard).map((key) => {
       return this.props.leaderboard[key];
     });
@@ -53,38 +47,20 @@ class Leaderboard extends Component {
       );
     });
 
-    if (counter !== totalScholars) {
-      return (
-        <div className="text-center mt-1">
-          <div>Loading leaderboard data...</div>
-          <div>
-            Fetching {counter}/{totalScholars}...
-          </div>
-          <div
-            className="spinner-border spinner-border m-3"
-            role="status"
-            aria-hidden="true"
-          ></div>
-          <div className="mb-3">MMR updates every 4 hrs.</div>
-          <img src="/riptermi.gif" width="100%" alt="rip-termi"></img>
-        </div>
-      );
-    } else {
-      return (
-        <div className="card bg-dark mb-3">
-          <table className="table text-white">
-            <thead>
-              <tr>
-                <th className="table-secondary">Rank</th>
-                <th className="table-secondary">Name</th>
-                <th className="table-secondary">MMR</th>
-              </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-          </table>
-        </div>
-      );
-    }
+    return (
+      <div className="card bg-dark mb-3">
+        <table className="table text-white">
+          <thead>
+            <tr>
+              <th className="table-secondary">Rank</th>
+              <th className="table-secondary">Name</th>
+              <th className="table-secondary">MMR</th>
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </table>
+      </div>
+    );
   }
 
   render() {

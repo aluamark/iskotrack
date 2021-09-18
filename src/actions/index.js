@@ -36,8 +36,6 @@ export const hideLoader = () => (dispatch) => {
   });
 };
 
-export const checkPendingRequests = () => (dispatch) => {};
-
 export const signIn = (formValues) => async (dispatch) => {
   try {
     const response = await scholar.post(`/user/login`, { ...formValues });
@@ -193,9 +191,9 @@ fragment AxieBrief on Axie {
 };
 
 export const fetchArena = (ethAddress) => async (dispatch) => {
-  const response = await proxy.get(`/${ethAddress}`);
-  const elo = response.data.mmr;
-  const ign = response.data.ign;
+  const response = await proxy.get(`/scholar?address=${ethAddress}&pvp=true`);
+  const elo = response.data.pvp.elo;
+  const ign = response.data.pvp.name;
 
   dispatch({ type: "FETCH_ARENA", payload: { ethAddress, ign, elo } });
 };

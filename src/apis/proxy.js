@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://api.lunaciarover.com/stats",
+  baseURL: "https://server.axie.watch",
 });
