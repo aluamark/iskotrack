@@ -120,22 +120,22 @@ class ScholarCard extends Component {
             className="mb-1"
             src={this.props.scholarsAxies.axie0}
             alt="slp"
-            height={this.props.email === "aluamark@gmail.com" ? "40px" : "30px"}
-            width={this.props.email === "aluamark@gmail.com" ? "50px" : "40px"}
+            height="30px"
+            width="40px"
           />
           <img
             className="mb-1"
             src={this.props.scholarsAxies.axie1}
             alt="slp"
-            height={this.props.email === "aluamark@gmail.com" ? "40px" : "30px"}
-            width={this.props.email === "aluamark@gmail.com" ? "50px" : "40px"}
+            height="30px"
+            width="40px"
           />
           <img
             className="mb-1"
             src={this.props.scholarsAxies.axie2}
             alt="slp"
-            height={this.props.email === "aluamark@gmail.com" ? "40px" : "30px"}
-            width={this.props.email === "aluamark@gmail.com" ? "50px" : "40px"}
+            height="30px"
+            width="40px"
           />
         </small>
       );
@@ -318,7 +318,7 @@ class ScholarCard extends Component {
                     {this.renderAxies()}
 
                     {/* REMOVE COMMENT TO OPEN SCHOLAR OPTIONS */}
-                    {/* <a
+                    <a
                       href={`https://marketplace.axieinfinity.com/profile/${viewAxieAddrs}/axie`}
                       target="_blank"
                       rel="noreferrer"
@@ -343,7 +343,7 @@ class ScholarCard extends Component {
                       }}
                     >
                       <i className="fas fa-user-times text-danger"></i>
-                    </button> */}
+                    </button>
                   </div>
                 </div>
               </div>
