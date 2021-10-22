@@ -191,9 +191,10 @@ fragment AxieBrief on Axie {
 };
 
 export const fetchArena = (ethAddress) => async (dispatch) => {
-  const response = await proxy.get(`/scholar?address=${ethAddress}&pvp=true`);
-  const elo = response.data.pvp.elo;
-  const ign = response.data.pvp.name;
+  const response = await proxy.get(`/mmr/${ethAddress}`);
+  console.log(response);
+  const elo = response.data[0].items[1].elo;
+  const ign = response.data[0].items[1].name;
 
   dispatch({ type: "FETCH_ARENA", payload: { ethAddress, ign, elo } });
 };
